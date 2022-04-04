@@ -42,6 +42,8 @@ namespace ER_Buddy_Randomizer
         {
             b_randomize.Enabled = false;
             b_restoreRegulation.Enabled = false;
+            string version = Application.ProductVersion;
+            Text = Text+String.Format(" {0}", version);
         }
 
         private static PARAM.Row InsertParamRow(PARAM param, PARAM.Row row, int newID)
