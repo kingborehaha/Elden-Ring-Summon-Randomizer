@@ -108,7 +108,7 @@
             // 
             this.openFileDialog1.FileName = "regulation.bin";
             this.openFileDialog1.Filter = "Regulation File|regulation.bin|All Files|*.*";
-            this.openFileDialog1.Title = "Select \"regulation.bin\"";
+            this.openFileDialog1.Title = "Open \"regulation.bin\"";
             // 
             // label3
             // 
