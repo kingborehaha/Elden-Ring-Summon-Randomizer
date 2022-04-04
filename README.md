@@ -7,7 +7,8 @@
 Initial beta release
 
 ## Dependencies
-- Built using https://github.com/JKAnderson/SoulsFormats and https://github.com/soulsmods/Paramdex
+- Built using https://github.com/JKAnderson/SoulsFormats
+- Contains Param Definitions from https://github.com/soulsmods/Paramdex
 
 ## Info
 - Use with https://github.com/soulsmods/ModEngine2 to prevent getting banned.
