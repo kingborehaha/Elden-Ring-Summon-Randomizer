@@ -1,9 +1,9 @@
-# Randomizes Elden Ring spirit ash summons.
+## Randomizer for Elden Ring spirit ash summons.
 
 ![Capture](https://user-images.githubusercontent.com/55667610/161639316-c7c32881-949b-449b-ac29-d7739e93a4e0.JPG)
 
 ## Updates
-#### v0.1.0
+### v0.1.0
 Initial beta release
 
 ## Dependencies
