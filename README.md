@@ -1,6 +1,6 @@
 ## Randomizer for Elden Ring spirit ash summons.
 
-![Capture](https://user-images.githubusercontent.com/55667610/161639316-c7c32881-949b-449b-ac29-d7739e93a4e0.JPG)
+![Capture](https://user-images.githubusercontent.com/55667610/161849780-02396cfa-7d6b-4c7a-8d81-33a83db09905.PNG)
 
 ## How to Use
 - Install Mod Engine 2 https://github.com/soulsmods/ModEngine2
