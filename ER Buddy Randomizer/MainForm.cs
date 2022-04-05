@@ -418,8 +418,8 @@ namespace ER_Buddy_Randomizer
                 buddyParamRow["npcParamId_ridden"].Value = -1;
                 buddyParamRow["npcThinkParamId_ridden"].Value = -1;
                 buddyParamRow["generateAnimId"].Value = -1;
-                buddyParamRow["appearOnAroundSekihi"].Value = false; //always summon around player
-                buddyParamRow["pcFollowType"].Value = false; //false == follow player around
+                buddyParamRow["appearOnAroundSekihi"].Value = (byte)0; //always summon around player
+                buddyParamRow["pcFollowType"].Value = (byte)0; //false == follow player around
 
                 //spawn offsets
                 if (isMultiSummon)
