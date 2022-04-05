@@ -5,9 +5,9 @@
 ## How to Use
 - Install Mod Engine 2 https://github.com/soulsmods/ModEngine2
 - Current version of Mod Engine 2 does not manage save files, so if you have existing saves: go to "AppData\Roaming\EldenRing" and backup the save files within. Restore these backups if you want to play online.
-- Copy regulation.bin from Elden Ring's game folder to Mod Engine 2's mod folder.
-- Run the Randomizer, select regulation.bin within the mod folder to randomize parameters.
-- Run Mod Engine 2's "launchmod_eldenring.bat" to play the game with the modded regulation
+- Copy regulation.bin from Elden Ring's "Game" folder to Mod Engine 2's "Mod" folder.
+- Run Summon Randomizer. Load regulation.bin within the Mod Engine 2's "Mod" folder.
+- Once you are finished running Summon Randomizer, run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
 ### v0.1.0
