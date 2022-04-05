@@ -476,7 +476,7 @@
             this.cb_bigBuddy.Size = new System.Drawing.Size(170, 19);
             this.cb_bigBuddy.TabIndex = 63;
             this.cb_bigBuddy.Text = "Forbid Large Multi-Buddies";
-            this.toolTip1.SetToolTip(this.cb_bigBuddy, "Determines if buddy size determines if they can be a multi-buddy");
+            this.toolTip1.SetToolTip(this.cb_bigBuddy, "Determines if large enemies can\'t be a Multi-Buddy");
             this.cb_bigBuddy.UseVisualStyleBackColor = true;
             // 
             // n_multipleDupeChance
