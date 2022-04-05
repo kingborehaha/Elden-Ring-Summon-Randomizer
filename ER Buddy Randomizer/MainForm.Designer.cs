@@ -195,7 +195,7 @@
             // n_rngSeed
             // 
             this.n_rngSeed.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.n_rngSeed.Location = new System.Drawing.Point(82, 394);
+            this.n_rngSeed.Location = new System.Drawing.Point(64, 394);
             this.n_rngSeed.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -227,7 +227,7 @@
             this.label_randomseed.Enabled = false;
             this.label_randomseed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_randomseed.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label_randomseed.Location = new System.Drawing.Point(80, 420);
+            this.label_randomseed.Location = new System.Drawing.Point(64, 420);
             this.label_randomseed.Name = "label_randomseed";
             this.label_randomseed.Size = new System.Drawing.Size(113, 15);
             this.label_randomseed.TabIndex = 35;
@@ -390,7 +390,7 @@
             // 
             this.b_getSettings.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.b_getSettings.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_getSettings.Location = new System.Drawing.Point(31, 343);
+            this.b_getSettings.Location = new System.Drawing.Point(12, 343);
             this.b_getSettings.Name = "b_getSettings";
             this.b_getSettings.Size = new System.Drawing.Size(34, 23);
             this.b_getSettings.TabIndex = 58;
@@ -404,7 +404,7 @@
             this.b_settingsSet.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.b_settingsSet.Enabled = false;
             this.b_settingsSet.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_settingsSet.Location = new System.Drawing.Point(195, 343);
+            this.b_settingsSet.Location = new System.Drawing.Point(177, 343);
             this.b_settingsSet.Name = "b_settingsSet";
             this.b_settingsSet.Size = new System.Drawing.Size(34, 23);
             this.b_settingsSet.TabIndex = 59;
@@ -417,7 +417,7 @@
             // 
             this.b_newSeed.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.b_newSeed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_newSeed.Location = new System.Drawing.Point(31, 394);
+            this.b_newSeed.Location = new System.Drawing.Point(12, 394);
             this.b_newSeed.Name = "b_newSeed";
             this.b_newSeed.Size = new System.Drawing.Size(45, 23);
             this.b_newSeed.TabIndex = 37;
@@ -586,7 +586,7 @@
             // 
             this.cb_buddyReuse.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cb_buddyReuse.AutoSize = true;
-            this.cb_buddyReuse.Location = new System.Drawing.Point(107, 91);
+            this.cb_buddyReuse.Location = new System.Drawing.Point(107, 94);
             this.cb_buddyReuse.Name = "cb_buddyReuse";
             this.cb_buddyReuse.Size = new System.Drawing.Size(127, 19);
             this.cb_buddyReuse.TabIndex = 50;
@@ -599,7 +599,7 @@
             // tb_settings
             // 
             this.tb_settings.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tb_settings.Location = new System.Drawing.Point(71, 343);
+            this.tb_settings.Location = new System.Drawing.Point(53, 343);
             this.tb_settings.Name = "tb_settings";
             this.tb_settings.PlaceholderText = "No Preset";
             this.tb_settings.Size = new System.Drawing.Size(118, 23);
@@ -667,7 +667,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(61, 292);
+            this.label11.Location = new System.Drawing.Point(53, 292);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(118, 25);
             this.label11.TabIndex = 25;
@@ -798,7 +798,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(94, 376);
+            this.label17.Location = new System.Drawing.Point(78, 376);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(59, 15);
             this.label17.TabIndex = 52;
@@ -809,7 +809,7 @@
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label20.Location = new System.Drawing.Point(80, 325);
+            this.label20.Location = new System.Drawing.Point(64, 325);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(84, 15);
             this.label20.TabIndex = 56;
