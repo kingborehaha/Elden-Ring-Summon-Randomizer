@@ -3,9 +3,7 @@ using Microsoft.VisualBasic.FileIO;
 
 /*
  * IMMEDIATE TODO
- * 
- * figure out what buddyParam follow player does, and decide if it should be on or off
- * 
+ * :)
  * eventually todo
  * vague balancing: use multiple sets of spEffects with diminished effects for multi-buddies
  * check npcParam hit height to determine if buddy should be spawned higher
@@ -253,10 +251,9 @@ namespace ER_Buddy_Randomizer
                 Int32 npcID;
                 Int32 npcThinkID;
 
-                //skip row 0
+                //skip row ID 0
                 if (buddyParamRow.ID == 0)
                     continue;
-
 
                 if (goodNpcIDs.Count == 0)
                 {
@@ -419,7 +416,7 @@ namespace ER_Buddy_Randomizer
                 buddyParamRow["npcThinkParamId_ridden"].Value = -1;
                 buddyParamRow["generateAnimId"].Value = -1;
                 buddyParamRow["appearOnAroundSekihi"].Value = (byte)0; //always summon around player
-                buddyParamRow["pcFollowType"].Value = (byte)0; //false == follow player around
+                buddyParamRow["pcFollowType"].Value = (byte)0; //0 = follow player around, 1 = don't?, 2 = ?
 
                 //spawn offsets
                 if (isMultiSummon)
@@ -447,7 +444,6 @@ namespace ER_Buddy_Randomizer
 
 
                 //npcThinkParam
-                //todo: maybe other stuff too? not sure.
                 npcThinkParam[npcThinkID]["isBuddyAI"].Value = true;
 
 

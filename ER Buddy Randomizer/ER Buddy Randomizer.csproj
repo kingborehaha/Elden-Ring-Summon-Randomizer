@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SoulsFormats ER\SoulsFormats\SoulsFormats.csproj" />
+    <ProjectReference Include="..\..\..\SoulsFormats\SoulsFormats\SoulsFormats.csproj" />
   </ItemGroup>
 
   <ItemGroup>
