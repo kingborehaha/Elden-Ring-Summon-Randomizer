@@ -112,7 +112,7 @@
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(411, 72);
             this.label3.Name = "label3";
@@ -122,7 +122,7 @@
             // 
             // n_damageMult
             // 
-            this.n_damageMult.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.n_damageMult.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.n_damageMult.DecimalPlaces = 2;
             this.n_damageMult.Increment = new decimal(new int[] {
             1,
@@ -153,7 +153,7 @@
             // 
             // label4
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.Location = new System.Drawing.Point(349, 36);
@@ -171,7 +171,7 @@
             // 
             // label12
             // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(308, 370);
             this.label12.Name = "label12";
@@ -183,7 +183,7 @@
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.numericUpDown3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.numericUpDown3.Enabled = false;
             this.numericUpDown3.Location = new System.Drawing.Point(317, 388);
             this.numericUpDown3.Name = "numericUpDown3";
@@ -195,7 +195,7 @@
             // n_rngSeed
             // 
             this.n_rngSeed.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.n_rngSeed.Location = new System.Drawing.Point(64, 394);
+            this.n_rngSeed.Location = new System.Drawing.Point(85, 394);
             this.n_rngSeed.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -227,7 +227,7 @@
             this.label_randomseed.Enabled = false;
             this.label_randomseed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_randomseed.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label_randomseed.Location = new System.Drawing.Point(64, 420);
+            this.label_randomseed.Location = new System.Drawing.Point(85, 420);
             this.label_randomseed.Name = "label_randomseed";
             this.label_randomseed.Size = new System.Drawing.Size(113, 15);
             this.label_randomseed.TabIndex = 35;
@@ -237,7 +237,7 @@
             // 
             // cb_npcEquipment
             // 
-            this.cb_npcEquipment.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cb_npcEquipment.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cb_npcEquipment.AutoSize = true;
             this.cb_npcEquipment.Enabled = false;
             this.cb_npcEquipment.Location = new System.Drawing.Point(320, 347);
@@ -252,7 +252,7 @@
             // 
             // label16
             // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(322, 208);
             this.label16.Name = "label16";
@@ -263,7 +263,7 @@
             // 
             // n_fpMin
             // 
-            this.n_fpMin.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.n_fpMin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.n_fpMin.Location = new System.Drawing.Point(331, 182);
             this.n_fpMin.Maximum = new decimal(new int[] {
             999,
@@ -283,7 +283,7 @@
             // 
             // n_fpMax
             // 
-            this.n_fpMax.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.n_fpMax.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.n_fpMax.Location = new System.Drawing.Point(422, 182);
             this.n_fpMax.Maximum = new decimal(new int[] {
             999,
@@ -303,7 +303,7 @@
             // 
             // n_hpMult
             // 
-            this.n_hpMult.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.n_hpMult.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.n_hpMult.DecimalPlaces = 2;
             this.n_hpMult.Increment = new decimal(new int[] {
             1,
@@ -334,7 +334,7 @@
             // 
             // n_hpChance
             // 
-            this.n_hpChance.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.n_hpChance.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.n_hpChance.Location = new System.Drawing.Point(331, 226);
             this.n_hpChance.Name = "n_hpChance";
             this.n_hpChance.Size = new System.Drawing.Size(62, 23);
@@ -348,7 +348,7 @@
             // 
             // n_hpMax
             // 
-            this.n_hpMax.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.n_hpMax.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.n_hpMax.Location = new System.Drawing.Point(422, 270);
             this.n_hpMax.Maximum = new decimal(new int[] {
             9999,
@@ -368,7 +368,7 @@
             // 
             // n_hpMin
             // 
-            this.n_hpMin.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.n_hpMin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.n_hpMin.Location = new System.Drawing.Point(331, 270);
             this.n_hpMin.Maximum = new decimal(new int[] {
             9999,
@@ -390,7 +390,7 @@
             // 
             this.b_getSettings.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.b_getSettings.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_getSettings.Location = new System.Drawing.Point(12, 343);
+            this.b_getSettings.Location = new System.Drawing.Point(33, 343);
             this.b_getSettings.Name = "b_getSettings";
             this.b_getSettings.Size = new System.Drawing.Size(34, 23);
             this.b_getSettings.TabIndex = 58;
@@ -404,7 +404,7 @@
             this.b_settingsSet.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.b_settingsSet.Enabled = false;
             this.b_settingsSet.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_settingsSet.Location = new System.Drawing.Point(177, 343);
+            this.b_settingsSet.Location = new System.Drawing.Point(198, 343);
             this.b_settingsSet.Name = "b_settingsSet";
             this.b_settingsSet.Size = new System.Drawing.Size(34, 23);
             this.b_settingsSet.TabIndex = 59;
@@ -417,7 +417,7 @@
             // 
             this.b_newSeed.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.b_newSeed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_newSeed.Location = new System.Drawing.Point(12, 394);
+            this.b_newSeed.Location = new System.Drawing.Point(33, 394);
             this.b_newSeed.Name = "b_newSeed";
             this.b_newSeed.Size = new System.Drawing.Size(45, 23);
             this.b_newSeed.TabIndex = 37;
@@ -471,7 +471,7 @@
             this.cb_bigBuddy.AutoSize = true;
             this.cb_bigBuddy.Checked = true;
             this.cb_bigBuddy.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_bigBuddy.Location = new System.Drawing.Point(30, 255);
+            this.cb_bigBuddy.Location = new System.Drawing.Point(51, 255);
             this.cb_bigBuddy.Name = "cb_bigBuddy";
             this.cb_bigBuddy.Size = new System.Drawing.Size(170, 19);
             this.cb_bigBuddy.TabIndex = 63;
@@ -482,7 +482,7 @@
             // n_multipleDupeChance
             // 
             this.n_multipleDupeChance.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.n_multipleDupeChance.Location = new System.Drawing.Point(149, 226);
+            this.n_multipleDupeChance.Location = new System.Drawing.Point(170, 226);
             this.n_multipleDupeChance.Name = "n_multipleDupeChance";
             this.n_multipleDupeChance.Size = new System.Drawing.Size(50, 23);
             this.n_multipleDupeChance.TabIndex = 15;
@@ -497,7 +497,7 @@
             // n_multipleMax
             // 
             this.n_multipleMax.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.n_multipleMax.Location = new System.Drawing.Point(150, 182);
+            this.n_multipleMax.Location = new System.Drawing.Point(171, 182);
             this.n_multipleMax.Minimum = new decimal(new int[] {
             1,
             0,
@@ -518,7 +518,7 @@
             // 
             this.max.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.max.AutoSize = true;
-            this.max.Location = new System.Drawing.Point(134, 165);
+            this.max.Location = new System.Drawing.Point(155, 165);
             this.max.Name = "max";
             this.max.Size = new System.Drawing.Size(100, 15);
             this.max.TabIndex = 5;
@@ -528,7 +528,7 @@
             // n_multipleChanceBase
             // 
             this.n_multipleChanceBase.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.n_multipleChanceBase.Location = new System.Drawing.Point(39, 182);
+            this.n_multipleChanceBase.Location = new System.Drawing.Point(60, 182);
             this.n_multipleChanceBase.Name = "n_multipleChanceBase";
             this.n_multipleChanceBase.Size = new System.Drawing.Size(50, 23);
             this.n_multipleChanceBase.TabIndex = 6;
@@ -543,7 +543,7 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(136, 208);
+            this.label7.Location = new System.Drawing.Point(157, 208);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(78, 15);
             this.label7.TabIndex = 16;
@@ -553,7 +553,7 @@
             // n_multipleChanceAdditional
             // 
             this.n_multipleChanceAdditional.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.n_multipleChanceAdditional.Location = new System.Drawing.Point(38, 226);
+            this.n_multipleChanceAdditional.Location = new System.Drawing.Point(59, 226);
             this.n_multipleChanceAdditional.Name = "n_multipleChanceAdditional";
             this.n_multipleChanceAdditional.Size = new System.Drawing.Size(50, 23);
             this.n_multipleChanceAdditional.TabIndex = 17;
@@ -569,7 +569,7 @@
             // n_variantReuseChance
             // 
             this.n_variantReuseChance.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.n_variantReuseChance.Location = new System.Drawing.Point(39, 90);
+            this.n_variantReuseChance.Location = new System.Drawing.Point(60, 90);
             this.n_variantReuseChance.Name = "n_variantReuseChance";
             this.n_variantReuseChance.Size = new System.Drawing.Size(50, 23);
             this.n_variantReuseChance.TabIndex = 47;
@@ -586,7 +586,7 @@
             // 
             this.cb_buddyReuse.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cb_buddyReuse.AutoSize = true;
-            this.cb_buddyReuse.Location = new System.Drawing.Point(107, 94);
+            this.cb_buddyReuse.Location = new System.Drawing.Point(128, 94);
             this.cb_buddyReuse.Name = "cb_buddyReuse";
             this.cb_buddyReuse.Size = new System.Drawing.Size(127, 19);
             this.cb_buddyReuse.TabIndex = 50;
@@ -599,7 +599,7 @@
             // tb_settings
             // 
             this.tb_settings.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tb_settings.Location = new System.Drawing.Point(53, 343);
+            this.tb_settings.Location = new System.Drawing.Point(74, 343);
             this.tb_settings.Name = "tb_settings";
             this.tb_settings.PlaceholderText = "No Preset";
             this.tb_settings.Size = new System.Drawing.Size(118, 23);
@@ -614,7 +614,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(47, 131);
+            this.label6.Location = new System.Drawing.Point(68, 131);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(147, 25);
             this.label6.TabIndex = 14;
@@ -622,7 +622,7 @@
             // 
             // label8
             // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(322, 164);
             this.label8.Name = "label8";
@@ -632,7 +632,7 @@
             // 
             // label9
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(411, 164);
             this.label9.Name = "label9";
@@ -642,7 +642,7 @@
             // 
             // label10
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label10.Location = new System.Drawing.Point(361, 131);
@@ -667,7 +667,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(53, 292);
+            this.label11.Location = new System.Drawing.Point(74, 292);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(118, 25);
             this.label11.TabIndex = 25;
@@ -675,7 +675,7 @@
             // 
             // label13
             // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label13.Location = new System.Drawing.Point(308, 319);
@@ -687,7 +687,7 @@
             // 
             // label14
             // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(322, 72);
             this.label14.Name = "label14";
@@ -697,7 +697,7 @@
             // 
             // label5
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(411, 252);
             this.label5.Name = "label5";
@@ -707,7 +707,7 @@
             // 
             // label15
             // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(322, 252);
             this.label15.Name = "label15";
@@ -720,7 +720,7 @@
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label19.Location = new System.Drawing.Point(47, 36);
+            this.label19.Location = new System.Drawing.Point(68, 36);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(147, 25);
             this.label19.TabIndex = 49;
@@ -798,7 +798,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(78, 376);
+            this.label17.Location = new System.Drawing.Point(99, 376);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(59, 15);
             this.label17.TabIndex = 52;
@@ -809,7 +809,7 @@
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label20.Location = new System.Drawing.Point(64, 325);
+            this.label20.Location = new System.Drawing.Point(85, 325);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(84, 15);
             this.label20.TabIndex = 56;
@@ -819,7 +819,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 165);
+            this.label1.Location = new System.Drawing.Point(46, 165);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 15);
             this.label1.TabIndex = 7;
@@ -829,7 +829,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 208);
+            this.label2.Location = new System.Drawing.Point(43, 208);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 15);
             this.label2.TabIndex = 18;
@@ -839,7 +839,7 @@
             // 
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(8, 72);
+            this.label18.Location = new System.Drawing.Point(29, 72);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(119, 15);
             this.label18.TabIndex = 48;
