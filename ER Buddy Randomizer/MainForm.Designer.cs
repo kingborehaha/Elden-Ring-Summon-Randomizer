@@ -489,7 +489,7 @@
             this.toolTip1.SetToolTip(this.n_multipleDupeChance, "Chance for the 2nd+ Multi-Buddies to be the same enemy type as the 1st (100 = 100" +
         "%)");
             this.n_multipleDupeChance.Value = new decimal(new int[] {
-            50,
+            80,
             0,
             0,
             0});
@@ -577,7 +577,7 @@
         "n (100 = 100%)\r\nEnemy variant example: a small dog that inflicts rot is a small " +
         "dog variant.\r\n");
             this.n_variantReuseChance.Value = new decimal(new int[] {
-            25,
+            20,
             0,
             0,
             0});
