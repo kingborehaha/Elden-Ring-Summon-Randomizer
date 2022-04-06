@@ -16,9 +16,8 @@ namespace ER_Buddy_Randomizer
 {
     public partial class MainForm : Form
     {
-
-        public Dictionary<string, PARAM> paramList = new();
         public string backupFile = Directory.GetCurrentDirectory() + "/regulation.bin.backup";
+
         public List<string> settingsList = new();
         public Dictionary<string, string> presetList = new()
         {
@@ -140,6 +139,53 @@ namespace ER_Buddy_Randomizer
 
         private void CreateBuddy()
         {
+
+            Dictionary<string, PARAM> paramList = new();
+            string regulationPath = openFileDialog1.FileName;
+
+            UpdateConsole("Checking Backup");
+            if (!File.Exists(backupFile))
+            {
+                //no backup file exists
+                UpdateConsole("Creating Backup");
+                File.Copy(openFileDialog1.FileName, backupFile);
+                b_restoreRegulation.Enabled = true;
+            }
+
+
+            UpdateConsole("Decrypting Regulation");
+
+            BND4 paramBND = SFUtil.DecryptERRegulation(regulationPath); //load and decrypt param regulation
+
+            UpdateConsole("Loading ParamDefs");
+
+            var paramdefs = new List<PARAMDEF>();
+            foreach (string path in Directory.GetFiles("Paramdex", "*.xml"))
+            {
+                var paramdef = PARAMDEF.XmlDeserialize(path);
+                paramdefs.Add(paramdef);
+            }
+
+            UpdateConsole("Handling Params");
+
+            foreach (BinderFile file in paramBND.Files)
+            {
+                string name = Path.GetFileNameWithoutExtension(file.Name);
+                var param = PARAM.Read(file.Bytes);
+
+                // Recommended method: checks the list for any match, or you can test them one-by-one
+                if (param.ApplyParamdefCarefully(paramdefs))
+                    paramList[name] = param;
+
+                // Alternative method: applies without any additional verification
+                //param.ApplyParamdef(paramdefs.Find(def => def.ParamType == param.ParamType));
+                //paramList[name] = param;
+            }
+
+            UpdateConsole("Modifying Params");
+
+
+
             PARAM buddyParam = paramList["BuddyParam"];
             PARAM npcParam = paramList["NpcParam"];
             PARAM npcThinkParam = paramList["NpcThinkParam"];
@@ -184,8 +230,8 @@ namespace ER_Buddy_Randomizer
 
 
 
-                    //Determine if this is a multi-summon, and if so: how many
-                    if (rng.Next(1, 100) <= n_multipleChanceBase.Value && n_multipleMax.Value > 1)
+                //Determine if this is a multi-summon, and if so: how many
+                if (rng.Next(1, 100) <= n_multipleChanceBase.Value && n_multipleMax.Value > 1)
                 {
 
                     //is a multi-summon
@@ -207,7 +253,7 @@ namespace ER_Buddy_Randomizer
 
 
 
-            
+
             //Get list of valid npcParam and npcThinkParam
             List<int> goodNpcIDs = new();
             List<int> goodNpcThinkIDs = new();
@@ -236,7 +282,7 @@ namespace ER_Buddy_Randomizer
                         else if (i == 0)
                         {
                             //throw new InvalidOperationException("Couldn't find an NpcThinkParam entry! Weird, right?");
-                            MessageBox.Show("Couldn't find a good NpcThinkParam entry!\nOffending NpcParam ID: "+NpcRow.ID + "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "ERROR", MessageBoxButtons.OK);
+                            MessageBox.Show("Couldn't find a good NpcThinkParam entry!\nOffending NpcParam ID: " + NpcRow.ID + "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "ERROR", MessageBoxButtons.OK);
                         }
                     }
                 }
@@ -327,7 +373,7 @@ namespace ER_Buddy_Randomizer
                     }
                     //edge case timeout check
                     timeout++;
-                    if (timeout >= 3000000+goodNpcIDs.Count)
+                    if (timeout >= 3000000 + goodNpcIDs.Count)
                     {
                         MessageBox.Show("Got stuck in NPC choice logic! This is probably because you are requesting too many unique multi-buddies. Try reducing multi-buddy chances, or enabling buddy reuse.\n\nIf this happens with reasonable settings, please send me a message (@king_bore_haha) with this error message and let me know if your game was already modded!", "ERROR", MessageBoxButtons.OK);
                         ActiveForm.Close(); //close the program
@@ -381,7 +427,7 @@ namespace ER_Buddy_Randomizer
                 newNpcRow["itemLotId_map"].Value = -1;
 
                 //npcParam Special Effects
-                int[] buddyEffects = { 295000 , 296000 , 297000 }; //special effects to be inserted into new npcParam
+                int[] buddyEffects = { 295000, 296000, 297000 }; //special effects to be inserted into new npcParam
                 int iBuddy = 0;
                 for (var iEffect = 0; iEffect <= 31; iEffect++)
                 {
@@ -401,7 +447,7 @@ namespace ER_Buddy_Randomizer
                 }
                 if (iBuddy < buddyEffects.Length)
                 {
-                    MessageBox.Show("Couldn't find enough empty effect slots.\nOffending NpcParam ID: "+npcID+ "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "ERROR", MessageBoxButtons.OK);
+                    MessageBox.Show("Couldn't find enough empty effect slots.\nOffending NpcParam ID: " + npcID + "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "ERROR", MessageBoxButtons.OK);
                 }
                 #endregion
 
@@ -439,7 +485,7 @@ namespace ER_Buddy_Randomizer
                 for (var iLv = 0; iLv <= 10; iLv++)
                 {
                     buddyParamRow["dopingSpEffect_lv" + iLv].Value = 290000 + iLv; //buddy reinforcement spEfects
-                } 
+                }
                 #endregion
 
 
@@ -501,6 +547,22 @@ namespace ER_Buddy_Randomizer
                     }
                 }
             }
+
+
+
+
+            UpdateConsole("Exporting Params");
+
+            //output regulation
+            foreach (BinderFile file in paramBND.Files)
+            {
+                string name = Path.GetFileNameWithoutExtension(file.Name);
+                if (paramList.ContainsKey(name))
+                    file.Bytes = paramList[name].Write();
+            }
+            SFUtil.EncryptERRegulation(regulationPath, paramBND); //encrypt and write param regulation
+
+
         }
 
         private void b_browse_Click(object sender, EventArgs e)
@@ -527,61 +589,9 @@ namespace ER_Buddy_Randomizer
 
             //start randomization
 
-            string regulationPath = openFileDialog1.FileName;
-
-            UpdateConsole("Checking Backup");
-            if (!File.Exists(backupFile))
-            {
-                //no backup file exists
-                UpdateConsole("Creating Backup");
-                File.Copy(openFileDialog1.FileName, backupFile);
-                b_restoreRegulation.Enabled = true;
-            }
-
-
-            UpdateConsole("Decrypting Regulation");
-
-            BND4 paramBND = SFUtil.DecryptERRegulation(regulationPath); //load and decrypt param regulation
-
-            UpdateConsole("Loading ParamDefs");
-
-            var paramdefs = new List<PARAMDEF>();
-            foreach (string path in Directory.GetFiles("Paramdex", "*.xml"))
-            {
-                var paramdef = PARAMDEF.XmlDeserialize(path);
-                paramdefs.Add(paramdef);
-            }
-
-            UpdateConsole("Handling Params");
-
-            foreach (BinderFile file in paramBND.Files)
-            {
-                string name = Path.GetFileNameWithoutExtension(file.Name);
-                var param = PARAM.Read(file.Bytes);
-
-                // Recommended method: checks the list for any match, or you can test them one-by-one
-                if (param.ApplyParamdefCarefully(paramdefs))
-                    paramList[name] = param;
-
-                // Alternative method: applies without any additional verification
-                //param.ApplyParamdef(paramdefs.Find(def => def.ParamType == param.ParamType));
-                //paramList[name] = param;
-            }
-
-            UpdateConsole("Modifying Params");
-
             CreateBuddy(); //do all the stuff
 
-            UpdateConsole("Exporting Params");
-
-            //output regulation
-            foreach (BinderFile file in paramBND.Files)
-            {
-                string name = Path.GetFileNameWithoutExtension(file.Name);
-                if (paramList.ContainsKey(name))
-                    file.Bytes = paramList[name].Write();
-            }
-            SFUtil.EncryptERRegulation(regulationPath, paramBND); //encrypt and write param regulation
+            GC.Collect(); //free memory
 
             UpdateConsole("Finished!");
 
