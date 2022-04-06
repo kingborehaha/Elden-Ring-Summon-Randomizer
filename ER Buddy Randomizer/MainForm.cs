@@ -5,10 +5,9 @@ using Microsoft.VisualBasic.FileIO;
  * IMMEDIATE TODO
  * :)
  * eventually todo
- * vague balancing: use multiple sets of spEffects with diminished effects for multi-buddies
- * check npcParam hit height to determine if buddy should be spawned higher
+ * vague balancing: establish multiple sets of spEffects with diminished mults for multi-buddies
  * tick buddyParam follow player type depending on how big they are too?
- *   figure out what follow player type even does though
+ *   figure out what follow player type values even do though
 */
 
 
