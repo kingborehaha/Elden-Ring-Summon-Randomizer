@@ -16,7 +16,7 @@ namespace ER_Buddy_Randomizer
     public partial class MainForm : Form
     {
         //public string backupFile = Directory.GetCurrentDirectory() + "/regulation.bin.backup"; //place backup next to .exe
-        public string backupFile;
+        public string backupFile = "";
 
         public List<string> settingsList = new();
         public Dictionary<string, string> presetList = new()
@@ -577,7 +577,7 @@ namespace ER_Buddy_Randomizer
 
                 b_randomize.Enabled = true;
 
-                UpdateConsole("Regulation.bin Loaded");
+                UpdateConsole("Selected Regulation.bin");
 
                 backupFile = directory + "/regulation.bin.backup"; //place backup next to regulation.bin
 
