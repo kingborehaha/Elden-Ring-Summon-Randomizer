@@ -11,8 +11,6 @@
 - Copy regulation.bin from Elden Ring's "Game" folder to Mod Engine 2's "Mod" folder.
 - Run Summon Randomizer. Load regulation.bin within the Mod Engine 2's "Mod" folder.
 - Once you are finished running Summon Randomizer, run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
-- Do not run this tool on Regulation.bin in Elden Ring's "Game" folder. If you do and play online, you could potentially be banned.
-- Once you are finished running Summon Randomizer, run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
 ### v0.1.0
