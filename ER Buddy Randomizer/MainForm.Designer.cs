@@ -434,7 +434,7 @@
             this.b_browse.Name = "b_browse";
             this.b_browse.Size = new System.Drawing.Size(74, 24);
             this.b_browse.TabIndex = 60;
-            this.b_browse.Text = "Open";
+            this.b_browse.Text = "Browse";
             this.toolTip1.SetToolTip(this.b_browse, "Browse and load ER\'s Regulation.bin file");
             this.b_browse.UseVisualStyleBackColor = true;
             this.b_browse.Click += new System.EventHandler(this.b_browse_Click);

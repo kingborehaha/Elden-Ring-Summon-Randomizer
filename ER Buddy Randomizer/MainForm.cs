@@ -28,7 +28,6 @@ namespace ER_Buddy_Randomizer
             { "playground", "20,90,8,50,50,False,10,3,0,0,0,0,0,True," },
         };
 
-
         public MainForm()
         {
             InitializeComponent();
@@ -39,7 +38,7 @@ namespace ER_Buddy_Randomizer
             b_randomize.Enabled = false;
             b_restoreRegulation.Enabled = false;
             string version = Application.ProductVersion;
-            Text = Text+String.Format(" {0}", version);
+            Text = Text+string.Format(" {0}", version);
         }
 
         private static PARAM.Row InsertParamRow(PARAM param, PARAM.Row row, int newID)
@@ -555,6 +554,23 @@ namespace ER_Buddy_Randomizer
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+
+                string? directory = Path.GetDirectoryName(openFileDialog1.FileName);
+                if (directory != null && File.Exists(directory + "\\eldenring.exe"))
+                {
+                    //user is loading the regulation next to eldenring.exe, yell at them
+
+                    DialogResult result = MessageBox.Show("!WARNING!\n\nModifying the Regulation.bin directly used by Elden Ring is ill-advised, as it's possible you may be banned."
+                        + " \nIt's highly recommended you instead use Mod Engine 2 and modify a copy of Regulation.bin."
+                        + " \n\nAre you sure you want to load the Regulation.bin you selected?"
+                        , "Confirm Regulation.bin Selection", MessageBoxButtons.OKCancel);
+                    if (result != DialogResult.OK)
+                    {
+                        b_randomize.Enabled = false;
+                        return;
+                    }
+                }
+
                 b_randomize.Enabled = true;
                 UpdateConsole("Regulation.bin Loaded");
 
