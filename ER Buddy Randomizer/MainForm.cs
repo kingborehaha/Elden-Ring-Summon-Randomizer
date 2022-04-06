@@ -15,7 +15,8 @@ namespace ER_Buddy_Randomizer
 {
     public partial class MainForm : Form
     {
-        public string backupFile = Directory.GetCurrentDirectory() + "/regulation.bin.backup";
+        //public string backupFile = Directory.GetCurrentDirectory() + "/regulation.bin.backup"; //place backup next to .exe
+        public string backupFile;
 
         public List<string> settingsList = new();
         public Dictionary<string, string> presetList = new()
@@ -38,7 +39,10 @@ namespace ER_Buddy_Randomizer
             b_randomize.Enabled = false;
             b_restoreRegulation.Enabled = false;
             string version = Application.ProductVersion;
-            Text = Text+string.Format(" {0}", version);
+            Text = Text + string.Format(" {0}", version);
+
+            //backupFile = Directory.GetCurrentDirectory() + "/regulation.bin.backup"; //place backup next to .exe
+
         }
 
         private static PARAM.Row InsertParamRow(PARAM param, PARAM.Row row, int newID)
@@ -129,7 +133,7 @@ namespace ER_Buddy_Randomizer
             }
             catch
             {
-                MessageBox.Show("Settings Preset is invalid.\n\nMake sure you properly copied and pasted the entire string.\nIf this setting preset is from a different version, it may be incompatible.", "ERROR", MessageBoxButtons.OK);
+                MessageBox.Show("Settings Preset is invalid.\n\nMake sure you properly copy/pasted the entire string.\nIf this setting preset is from a different version, it may be incompatible.", "ERROR", MessageBoxButtons.OK);
                 //SettingsToString();
             }
             return;
@@ -572,7 +576,10 @@ namespace ER_Buddy_Randomizer
                 }
 
                 b_randomize.Enabled = true;
+
                 UpdateConsole("Regulation.bin Loaded");
+
+                backupFile = directory + "/regulation.bin.backup"; //place backup next to regulation.bin
 
                 if (File.Exists(backupFile))
                     b_restoreRegulation.Enabled = true;
@@ -662,7 +669,7 @@ namespace ER_Buddy_Randomizer
         private void b_restoreRegulation_Click(object sender, EventArgs e)
         {
             string regulationPath = openFileDialog1.FileName;
-            DialogResult result = MessageBox.Show("Delete current Regulation.bin and restore backup?", "Restore Backup", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Delete targeted Regulation.bin and restore backup?", "Restore Backup", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 FileSystem.DeleteFile(regulationPath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
