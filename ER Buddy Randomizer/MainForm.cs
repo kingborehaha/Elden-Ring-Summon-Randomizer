@@ -140,6 +140,7 @@ namespace ER_Buddy_Randomizer
         private void CreateBuddy()
         {
 
+            #region Load Parameters from Regulation.bin
             Dictionary<string, PARAM> paramList = new();
             string regulationPath = openFileDialog1.FileName;
 
@@ -151,7 +152,6 @@ namespace ER_Buddy_Randomizer
                 File.Copy(openFileDialog1.FileName, backupFile);
                 b_restoreRegulation.Enabled = true;
             }
-
 
             UpdateConsole("Decrypting Regulation");
 
@@ -181,10 +181,9 @@ namespace ER_Buddy_Randomizer
                 //param.ApplyParamdef(paramdefs.Find(def => def.ParamType == param.ParamType));
                 //paramList[name] = param;
             }
+            #endregion
 
             UpdateConsole("Modifying Params");
-
-
 
             PARAM buddyParam = paramList["BuddyParam"];
             PARAM npcParam = paramList["NpcParam"];
@@ -192,17 +191,14 @@ namespace ER_Buddy_Randomizer
             PARAM goodsParam = paramList["EquipParamGoods"];
             PARAM spEffectParam = paramList["SpEffectParam"];
 
-
-            //initializing: RNG
+            //initialize RNG
             int rngSeed = (int)n_rngSeed.Value;
             if (rngSeed == -1)
             {
                 //if no seed was provided, generate a new one
-                //label_randomseed.Visible = false;
                 Random newSeed = new Random();
                 n_rngSeed.Value = newSeed.Next(1, 999999999);
                 rngSeed = (int)n_rngSeed.Value;
-                //UpdateConsole("Generating New Seed");
             }
             Random rng = new(rngSeed);
 
@@ -210,11 +206,13 @@ namespace ER_Buddy_Randomizer
 
             UpdateConsole("Modifying Params");
 
-            //BuddyParam entry groundwork
+            #region Cleanup & Randomizer Logic 1
+            //Clean buddyParam BuddyParam entry groundwork
             for (int i = 0; i < buddyParam.Rows.Count; i++)
             {
                 PARAM.Row row = buddyParam.Rows[i];
 
+                //Clean up buddy params
                 if (row.ID == 0)
                     continue;
                 else if (row.ID % 100 != 0)
@@ -224,16 +222,12 @@ namespace ER_Buddy_Randomizer
                     i--; //decrement to account for the removed row
                     continue;
                 }
+                row["npcParamId"].Value = -1; //needs to be cleared for variant logic
 
-                //clear value (needed for variant logic check)
-                row["npcParamId"].Value = -1;
-
-
-
-                //Determine if this is a multi-summon, and if so: how many
+                //Logic 1
+                //Decide how many buddies this summon should have
                 if (rng.Next(1, 100) <= n_multipleChanceBase.Value && n_multipleMax.Value > 1)
                 {
-
                     //is a multi-summon
                     InsertParamRow(buddyParam, buddyParam.Rows[i], buddyParam.Rows[i].ID + 1);
                     i++; //skip inserted row for the next loop
@@ -249,12 +243,10 @@ namespace ER_Buddy_Randomizer
                 }
             }
             int buddyParamCount = buddyParam.Rows.Count;
+            #endregion
 
-
-
-
-
-            //Get list of valid npcParam and npcThinkParam
+            #region Get Valid NPCs
+            //create list of valid npcParam and npcThinkParam
             List<int> goodNpcIDs = new();
             List<int> goodNpcThinkIDs = new();
             foreach (PARAM.Row NpcRow in npcParam.Rows.ToList())
@@ -287,10 +279,9 @@ namespace ER_Buddy_Randomizer
                     }
                 }
             }
+            #endregion
 
-
-            //modify params
-            float xOffset = 0;
+            #region Randomizer Logic 2
             for (int i = 0; i < buddyParamCount; i++)
             {
                 PARAM.Row buddyParamRow = buddyParam.Rows[i];
@@ -403,9 +394,9 @@ namespace ER_Buddy_Randomizer
 
                     }
                 }
+                #endregion
 
-
-                #region npcParam
+                #region NpcParam
                 //create and modify new npcParam entry
                 int newNpcID = npcID;
                 do
@@ -451,8 +442,8 @@ namespace ER_Buddy_Randomizer
                 }
                 #endregion
 
-
-                #region buddyParam
+                #region BuddyParam
+                float xOffset = 0;
                 buddyParamRow["npcParamId"].Value = newNpcID;
 
                 buddyParamRow["npcThinkParamId"].Value = npcThinkID;
@@ -488,14 +479,12 @@ namespace ER_Buddy_Randomizer
                 }
                 #endregion
 
-
                 //npcThinkParam
                 npcThinkParam[npcThinkID]["isBuddyAI"].Value = true;
 
-
             }
 
-            //
+            #region SpEffectParam
             //modify spEffects scalers used for buddy reinforcement
             for (var i = 0; i <= 10; i++)
             {
@@ -510,9 +499,9 @@ namespace ER_Buddy_Randomizer
                 spEffectRow["thunderAttackPowerRate"].Value = (float)spEffectRow["thunderAttackPowerRate"].Value + damMult;
                 spEffectRow["darkAttackPowerRate"].Value = (float)spEffectRow["darkAttackPowerRate"].Value + damMult;
             }
-            //
+            #endregion
 
-            //goodParam
+            #region GoodsParam
             //randomize FP/HP cost
             foreach (PARAM.Row row in goodsParam.Rows)
             {
@@ -547,9 +536,7 @@ namespace ER_Buddy_Randomizer
                     }
                 }
             }
-
-
-
+            #endregion
 
             UpdateConsole("Exporting Params");
 
@@ -560,8 +547,8 @@ namespace ER_Buddy_Randomizer
                 if (paramList.ContainsKey(name))
                     file.Bytes = paramList[name].Write();
             }
-            SFUtil.EncryptERRegulation(regulationPath, paramBND); //encrypt and write param regulation
 
+            SFUtil.EncryptERRegulation(regulationPath, paramBND); //encrypt and write param regulation
 
         }
 
@@ -575,7 +562,6 @@ namespace ER_Buddy_Randomizer
                 if (File.Exists(backupFile))
                     b_restoreRegulation.Enabled = true;
             }
-
         }
 
         public void UpdateConsole(string text)
@@ -586,15 +572,12 @@ namespace ER_Buddy_Randomizer
 
         private void b_randomize_Click(object sender, EventArgs e)
         {
-
-            //start randomization
-
-            CreateBuddy(); //do all the stuff
+            //start randomizer
+            CreateBuddy(); //Do everything
 
             GC.Collect(); //free memory
 
             UpdateConsole("Finished!");
-
         }
 
         private void n_rngSeed_ValueChanged(object sender, EventArgs e)
@@ -626,8 +609,7 @@ namespace ER_Buddy_Randomizer
         {
             MessageBox.Show(
                 "Hover over an option to see what it does.\n\n" +
-                "Remember use this with Mod Engine 2, or else you might get banned!\n" +
-                "Be careful to not use mod saves online, considering the current version of Mod Engine 2 does not handle modded save data. You should manually backup save data before playing with mods, and restore backups when you want to play online.\n\n" +
+                "Remember: use this with Mod Engine 2 and don't use modded saves online, or else you might get banned!\n" +
                 "Made by King Bore Haha / Geeeeeorge"
                 , "Info", MessageBoxButtons.OK);
 
