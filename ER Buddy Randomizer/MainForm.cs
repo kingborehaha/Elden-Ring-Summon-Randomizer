@@ -598,7 +598,7 @@ namespace ER_Buddy_Randomizer
                     //User wants to randomize a regulation that has a backup file next to it
 
                     DialogResult result = MessageBox.Show("Warning: Backup Regulation.bin already exists."
-                        + " \nYou may be trying to randomize an already randomized Regulation.bin, which will cause issues. It's recommended you restore a backup before proceeding"
+                        + " \nYou may be trying to randomize an already randomized Regulation.bin, which will cause issues. It's recommended you restore the backup first."
                         + " \n\nRestore backup before proceeding?"
                         , "Confirm Randomization", MessageBoxButtons.YesNoCancel);
                     if (result == DialogResult.Yes)
