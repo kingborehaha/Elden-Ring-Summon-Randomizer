@@ -15,7 +15,6 @@ namespace ER_Buddy_Randomizer
 {
     public partial class MainForm : Form
     {
-        //public string backupFile = Directory.GetCurrentDirectory() + "/regulation.bin.backup"; //place backup next to .exe
         public string backupFile = "";
 
         public List<string> settingsList = new();
@@ -40,8 +39,6 @@ namespace ER_Buddy_Randomizer
             b_restoreRegulation.Enabled = false;
             string version = Application.ProductVersion;
             Text = Text + string.Format(" {0}", version);
-
-            //backupFile = Directory.GetCurrentDirectory() + "/regulation.bin.backup"; //place backup next to .exe
 
         }
 
@@ -105,7 +102,7 @@ namespace ER_Buddy_Randomizer
 
             if (settingsList.Count != lastEntry + 1)
             {
-                MessageBox.Show("Settings Preset has wrong number of settings.\n\nMake sure you properly copied and pasted the entire string.\nIf this setting preset is from a different version, it may be incompatible.", "ERROR", MessageBoxButtons.OK);
+                MessageBox.Show("Settings Preset has wrong number of settings.\n\nMake sure you properly copied and pasted the entire string.\nIf this setting preset is from a different version, it may be incompatible.", "Error", MessageBoxButtons.OK);
                 return;
             }
 
@@ -133,7 +130,7 @@ namespace ER_Buddy_Randomizer
             }
             catch
             {
-                MessageBox.Show("Settings Preset is invalid.\n\nMake sure you properly copy/pasted the entire string.\nIf this setting preset is from a different version, it may be incompatible.", "ERROR", MessageBoxButtons.OK);
+                MessageBox.Show("Settings Preset is invalid.\n\nMake sure you properly copy/pasted the entire string.\nIf this setting preset is from a different version, it may be incompatible.", "Error", MessageBoxButtons.OK);
                 //SettingsToString();
             }
             return;
@@ -276,7 +273,7 @@ namespace ER_Buddy_Randomizer
                         else if (i == 0)
                         {
                             //throw new InvalidOperationException("Couldn't find an NpcThinkParam entry! Weird, right?");
-                            MessageBox.Show("Couldn't find a good NpcThinkParam entry!\nOffending NpcParam ID: " + NpcRow.ID + "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "ERROR", MessageBoxButtons.OK);
+                            MessageBox.Show("Couldn't find a good NpcThinkParam entry!\nOffending NpcParam ID: " + NpcRow.ID + "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "Error", MessageBoxButtons.OK);
                         }
                     }
                 }
@@ -297,7 +294,7 @@ namespace ER_Buddy_Randomizer
                 if (goodNpcIDs.Count == 0)
                 {
                     //error: good NPC IDs has ran out, but the program wants to still run
-                    MessageBox.Show("Ran out of NPC IDs to use! This is probably because you are requesting too many unique multi-buddies. Try enabling buddy reuse, or reducing multi-buddy chances.\n\nIf this happens with reasonable settings, please send me a message (@king_bore_haha) with this error message and let me know if your game was already modded!", "ERROR", MessageBoxButtons.OK);
+                    MessageBox.Show("Ran out of NPC IDs to use! This is probably because you are requesting too many unique multi-buddies. Try enabling buddy reuse, or reducing multi-buddy chances.\n\nIf this happens with reasonable settings, please send me a message (@king_bore_haha) with this error message and let me know if your game was already modded!", "Error", MessageBoxButtons.OK);
                     ActiveForm.Close(); //close the program
                 }
 
@@ -368,7 +365,7 @@ namespace ER_Buddy_Randomizer
                     timeout++;
                     if (timeout >= 3000000 + goodNpcIDs.Count)
                     {
-                        MessageBox.Show("Got stuck in NPC choice logic! This is probably because you are requesting too many unique multi-buddies. Try reducing multi-buddy chances, or enabling buddy reuse.\n\nIf this happens with reasonable settings, please send me a message (@king_bore_haha) with this error message and let me know if your game was already modded!", "ERROR", MessageBoxButtons.OK);
+                        MessageBox.Show("Got stuck in NPC choice logic! This is probably because you are requesting too many unique multi-buddies. Try reducing multi-buddy chances, or enabling buddy reuse.\n\nIf this happens with reasonable settings, please send me a message (@king_bore_haha) with this error message and let me know if your game was already modded!", "Error", MessageBoxButtons.OK);
                         ActiveForm.Close(); //close the program
                     }
                 }
@@ -440,7 +437,7 @@ namespace ER_Buddy_Randomizer
                 }
                 if (iBuddy < buddyEffects.Length)
                 {
-                    MessageBox.Show("Couldn't find enough empty effect slots.\nOffending NpcParam ID: " + npcID + "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "ERROR", MessageBoxButtons.OK);
+                    MessageBox.Show("Couldn't find enough empty effect slots.\nOffending NpcParam ID: " + npcID + "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "Error", MessageBoxButtons.OK);
                 }
                 #endregion
 
@@ -493,7 +490,7 @@ namespace ER_Buddy_Randomizer
                 //spEffects
                 PARAM.Row spEffectRow = spEffectParam[290000 + i];
                 float hpMult = (float)n_hpMult.Value - 1; //1.5 = + .5, .5 = -.5
-                float damMult = (float)n_damageMult.Value - 1;//1.5 = + .5, .5 = -.5
+                float damMult = (float)n_damageMult.Value - 1; //1.5 = + .5, .5 = -.5
                 spEffectRow["maxHpRate"].Value = (float)spEffectRow["maxHpRate"].Value + hpMult;
                 spEffectRow["physicsAttackPowerRate"].Value = (float)spEffectRow["physicsAttackPowerRate"].Value + damMult;
                 spEffectRow["magicAttackPowerRate"].Value = (float)spEffectRow["magicAttackPowerRate"].Value + damMult;
@@ -564,7 +561,7 @@ namespace ER_Buddy_Randomizer
                 {
                     //user is loading the regulation next to eldenring.exe, yell at them
 
-                    DialogResult result = MessageBox.Show("!WARNING!\n\nModifying the Regulation.bin directly used by Elden Ring is ill-advised, as it's possible you may be banned."
+                    DialogResult result = MessageBox.Show("Warning: Modifying the Regulation.bin directly used by Elden Ring is ill-advised, as it's possible you may be banned."
                         + " \nIt's highly recommended you instead use Mod Engine 2 and modify a copy of Regulation.bin."
                         + " \n\nAre you sure you want to load the Regulation.bin you selected?"
                         , "Confirm Regulation.bin Selection", MessageBoxButtons.OKCancel);
@@ -595,6 +592,25 @@ namespace ER_Buddy_Randomizer
         private void b_randomize_Click(object sender, EventArgs e)
         {
             //start randomizer
+
+             if (File.Exists(backupFile))
+                {
+                    //User wants to randomize a regulation that has a backup file next to it
+
+                    DialogResult result = MessageBox.Show("Warning: Backup Regulation.bin already exists."
+                        + " \nYou may be trying to randomize an already randomized Regulation.bin, which will cause issues. It's recommended you restore a backup before proceeding"
+                        + " \n\nRestore backup before proceeding?"
+                        , "Confirm Randomization", MessageBoxButtons.YesNoCancel);
+                    if (result == DialogResult.Yes)
+                    {
+                        Restore_Regulation();
+                    }
+                    else if (result == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+             }
+
             CreateBuddy(); //Do everything
 
             GC.Collect(); //free memory
@@ -666,10 +682,10 @@ namespace ER_Buddy_Randomizer
                 b_settingsSet.Enabled = false;
         }
 
-        private void b_restoreRegulation_Click(object sender, EventArgs e)
+        private void Restore_Regulation()
         {
             string regulationPath = openFileDialog1.FileName;
-            DialogResult result = MessageBox.Show("Delete targeted Regulation.bin and restore backup?", "Restore Backup", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Delete Regulation.bin and restore backup?", "Confirm", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 FileSystem.DeleteFile(regulationPath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
@@ -677,6 +693,11 @@ namespace ER_Buddy_Randomizer
                 UpdateConsole("Backup Restored");
                 b_restoreRegulation.Enabled = false;
             }
+        }
+
+        private void b_restoreRegulation_Click(object sender, EventArgs e)
+        {
+            Restore_Regulation();
         }
 
         private void n_fpMin_ValueChanged(object sender, EventArgs e)

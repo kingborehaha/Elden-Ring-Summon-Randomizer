@@ -185,7 +185,7 @@
             // 
             this.numericUpDown3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.numericUpDown3.Enabled = false;
-            this.numericUpDown3.Location = new System.Drawing.Point(317, 388);
+            this.numericUpDown3.Location = new System.Drawing.Point(320, 388);
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(50, 23);
             this.numericUpDown3.TabIndex = 30;
@@ -569,7 +569,7 @@
             // n_variantReuseChance
             // 
             this.n_variantReuseChance.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.n_variantReuseChance.Location = new System.Drawing.Point(60, 90);
+            this.n_variantReuseChance.Location = new System.Drawing.Point(53, 90);
             this.n_variantReuseChance.Name = "n_variantReuseChance";
             this.n_variantReuseChance.Size = new System.Drawing.Size(50, 23);
             this.n_variantReuseChance.TabIndex = 47;
@@ -586,7 +586,7 @@
             // 
             this.cb_buddyReuse.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cb_buddyReuse.AutoSize = true;
-            this.cb_buddyReuse.Location = new System.Drawing.Point(128, 94);
+            this.cb_buddyReuse.Location = new System.Drawing.Point(149, 94);
             this.cb_buddyReuse.Name = "cb_buddyReuse";
             this.cb_buddyReuse.Size = new System.Drawing.Size(127, 19);
             this.cb_buddyReuse.TabIndex = 50;
@@ -819,7 +819,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 165);
+            this.label1.Location = new System.Drawing.Point(37, 165);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 15);
             this.label1.TabIndex = 7;
@@ -839,7 +839,7 @@
             // 
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(29, 72);
+            this.label18.Location = new System.Drawing.Point(37, 72);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(119, 15);
             this.label18.TabIndex = 48;
