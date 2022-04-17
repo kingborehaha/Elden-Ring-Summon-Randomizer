@@ -56,7 +56,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy &quot;$(SolutionDir)README.md&quot; &quot;$(TargetDir)README.md&quot;&#xD;&#xA;" />
+    <Exec Command="copy &quot;$(SolutionDir)README.md&quot; &quot;$(TargetDir)README.txt&quot;" />
   </Target>
 
 </Project>
