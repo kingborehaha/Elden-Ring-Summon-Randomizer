@@ -14,9 +14,10 @@
 
 ## Updates
 ### v0.2.0
-Pre-public release
+Public release
 - Added a warning if you want to randomize a regulation.bin that already has a backup next to it
 - Misc UI and text adjustments
+- Include readme in download
 
 ### v0.1.0
 Initial beta release
