@@ -2,12 +2,11 @@ using SoulsFormats;
 using Microsoft.VisualBasic.FileIO;
 
 /*
- * IMMEDIATE TODO
- * :)
- * eventually todo
- * vague balancing: establish multiple sets of spEffects with diminished mults for multi-buddies
- * tick buddyParam follow player type depending on how big they are too?
- *   figure out what follow player type values even do though
+ TODO
+ * Check BuddyStoneParam stuff.
+ * Figure out how to best handle horizontal offsets for multi buddies. Reduce increments for plentiful multi buddies?
+ * Vague balancing: establish multiple sets of spEffects with diminished mults for multi-buddies
+ * Only tick buddyParam follow player type depending on how big they?
 */
 
 
@@ -442,7 +441,6 @@ namespace ER_Buddy_Randomizer
                 #endregion
 
                 #region BuddyParam
-                float xOffset = 0;
                 buddyParamRow["npcParamId"].Value = newNpcID;
 
                 buddyParamRow["npcThinkParamId"].Value = npcThinkID;
@@ -455,8 +453,11 @@ namespace ER_Buddy_Randomizer
                 buddyParamRow["pcFollowType"].Value = (byte)0; //0 = follow player around, 1 = don't?, 2 = ?
 
                 //spawn offsets
+                float xOffset = 0;
+                /*
                 if (isMultiSummon)
                 {
+                    //this doesn't even do anything, you dumbass
                     if (xOffset >= 0)
                         xOffset++; //increment
                     else
@@ -467,6 +468,7 @@ namespace ER_Buddy_Randomizer
                 {
                     xOffset = 0;
                 }
+                */
 
                 float buddyHeight = (float)newNpcRow["hitHeight"].Value;
                 buddyParamRow["z_offset"].Value = buddyHeight * -1; //vertical offset
