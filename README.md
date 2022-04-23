@@ -15,10 +15,11 @@
 ## Updates
 ### v1.0.0
 Public release
+- Changed/fixed how multi-buddy spawn offsets are calculated
 - Added a warning if you want to randomize a regulation.bin that already has a backup next to it
 - Misc UI and text adjustments
-- Include readme in download
-
+- Included readme in download
+- 
 ### v0.1.0
 Initial beta release
 
