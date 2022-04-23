@@ -202,8 +202,6 @@ namespace ER_Buddy_Randomizer
 
             SettingsToString();//update settings string
 
-            UpdateConsole("Modifying Params");
-
             #region Cleanup & Randomizer Logic 1
             //Clean buddyParam BuddyParam entry groundwork
             for (int i = 0; i < buddyParam.Rows.Count; i++)
@@ -461,8 +459,9 @@ namespace ER_Buddy_Randomizer
                 float xOffset = 0;
                 if (isMultiSummon)
                 {
-                    float buddyWidth = (float)newNpcRow["hitRadius"].Value;
+                    float buddyWidth = (float)newNpcRow["hitRadius"].Value * (float).75;
                     float xOffsetIncrement = buddyWidth;
+
                     xOffset = (float)buddyParam.Rows[i - 1]["x_offset"].Value;
                     if (xOffset >= 0)
                         xOffset += xOffsetIncrement; //increment
@@ -600,11 +599,11 @@ namespace ER_Buddy_Randomizer
 
                     DialogResult result = MessageBox.Show("Warning: Backup Regulation.bin already exists."
                         + " \nYou may be trying to randomize an already randomized Regulation.bin, which will cause issues. It's recommended you restore the backup first."
-                        //+ " \n\nRestore backup before proceeding?"
-                        , "Confirm Randomization", MessageBoxButtons.OKCancel);
+                        + " \n\nDelete Regulation.bin and restore backup before proceeding?"
+                        , "Confirm Randomization", MessageBoxButtons.YesNoCancel);
                     if (result == DialogResult.OK)
                     {
-                        Restore_Regulation("Delete Regulation.bin and restore backup before proceeding?");
+                        Restore_Regulation();
                     }
                     else if (result == DialogResult.Cancel)
                     {
@@ -686,22 +685,22 @@ namespace ER_Buddy_Randomizer
                 b_settingsSet.Enabled = false;
         }
 
-        private void Restore_Regulation(string restoreMessage)
+        private void Restore_Regulation()
         {
             string regulationPath = openFileDialog1.FileName;
-            DialogResult result = MessageBox.Show(restoreMessage, "Confirm", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                FileSystem.DeleteFile(regulationPath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-                File.Move(backupFile, regulationPath, false);
-                UpdateConsole("Backup Restored");
-                b_restoreRegulation.Enabled = false;
-            }
+            
+            FileSystem.DeleteFile(regulationPath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+            File.Move(backupFile, regulationPath, false);
+            UpdateConsole("Backup Restored");
+            b_restoreRegulation.Enabled = false;
+            
         }
 
         private void b_restoreRegulation_Click(object sender, EventArgs e)
         {
-            Restore_Regulation("Delete Regulation.bin and restore backup?");
+            DialogResult result = MessageBox.Show("Delete Regulation.bin and restore backup?", "Confirm", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                Restore_Regulation();
         }
 
         private void n_fpMin_ValueChanged(object sender, EventArgs e)
