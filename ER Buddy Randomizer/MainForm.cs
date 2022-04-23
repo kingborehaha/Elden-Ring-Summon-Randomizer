@@ -2,11 +2,11 @@ using SoulsFormats;
 using Microsoft.VisualBasic.FileIO;
 
 /*
- TODO
- * Check BuddyStoneParam stuff.
- * Figure out how to best handle horizontal offsets for multi buddies. Reduce increments for plentiful multi buddies?
+ TODO (someday)
+ * BuddyStoneParam stuff for extra utility.
+ * Figure out a cool way to handle horizontal offsets for multi buddies. Reduced increments for summons with many multi buddies? & influenced by size?
  * Vague balancing: establish multiple sets of spEffects with diminished mults for multi-buddies
- * Only tick buddyParam follow player type depending on how big they?
+ * Only tick buddyParam follow player type depending on how big they are?
 */
 
 
@@ -301,7 +301,7 @@ namespace ER_Buddy_Randomizer
                 int rng_index = rng.Next(0, goodNpcIDs.Count); //pick next random entry
 
 
-                //check if chosen NPC is acceptible
+                //check if chosen NPC is acceptable
                 int timeout = 0;
                 for (var iLogic = 0; iLogic < buddyParam.Rows.Count; iLogic++)
                 {
@@ -364,7 +364,7 @@ namespace ER_Buddy_Randomizer
                     timeout++;
                     if (timeout >= 3000000 + goodNpcIDs.Count)
                     {
-                        MessageBox.Show("Got stuck in NPC choice logic! This is probably because you are requesting too many unique multi-buddies. Try reducing multi-buddy chances, or enabling buddy reuse.\n\nIf this happens with reasonable settings, please send me a message (@king_bore_haha) with this error message and let me know if your game was already modded!", "Error", MessageBoxButtons.OK);
+                        MessageBox.Show("Got stuck in NPC choice logic! This is probably because you are requesting too many unique multi-buddies. Try reducing multi-buddy chances, or enabling buddy reuse.\n\nIf this happens with a default preset (or very easily), please send me a message with this error message and let me know if your game was already modded!", "Error", MessageBoxButtons.OK);
                         ActiveForm.Close(); //close the program
                     }
                 }
@@ -452,27 +452,26 @@ namespace ER_Buddy_Randomizer
                 buddyParamRow["appearOnAroundSekihi"].Value = (byte)0; //always summon around player
                 buddyParamRow["pcFollowType"].Value = (byte)0; //0 = follow player around, 1 = don't?, 2 = ?
 
-                //spawn offsets
+                //vertical spawn offset
+                float buddyHeight = (float)newNpcRow["hitHeight"].Value;
+                buddyParamRow["z_offset"].Value = buddyHeight * -1; //vertical spawn offset 1
+
+
+                //horizontal spawn offset
                 float xOffset = 0;
-                /*
                 if (isMultiSummon)
                 {
-                    //this doesn't even do anything, you dumbass
+                    float buddyWidth = (float)newNpcRow["hitRadius"].Value;
+                    float xOffsetIncrement = buddyWidth;
+                    xOffset = (float)buddyParam.Rows[i - 1]["x_offset"].Value;
                     if (xOffset >= 0)
-                        xOffset++; //increment
+                        xOffset += xOffsetIncrement; //increment
                     else
-                        xOffset--; //decrement
+                        xOffset -= xOffsetIncrement; //decrement
                     xOffset *= -1; //invert
                 }
-                else
-                {
-                    xOffset = 0;
-                }
-                */
+                buddyParamRow["x_offset"].Value = xOffset; //horizontal offset 2
 
-                float buddyHeight = (float)newNpcRow["hitHeight"].Value;
-                buddyParamRow["z_offset"].Value = buddyHeight * -1; //vertical offset
-                buddyParamRow["x_offset"].Value = xOffset; //horizontal offset
                 //special effect scalers
                 for (var iLv = 0; iLv <= 10; iLv++)
                 {
@@ -601,11 +600,11 @@ namespace ER_Buddy_Randomizer
 
                     DialogResult result = MessageBox.Show("Warning: Backup Regulation.bin already exists."
                         + " \nYou may be trying to randomize an already randomized Regulation.bin, which will cause issues. It's recommended you restore the backup first."
-                        + " \n\nRestore backup before proceeding?"
-                        , "Confirm Randomization", MessageBoxButtons.YesNoCancel);
-                    if (result == DialogResult.Yes)
+                        //+ " \n\nRestore backup before proceeding?"
+                        , "Confirm Randomization", MessageBoxButtons.OKCancel);
+                    if (result == DialogResult.OK)
                     {
-                        Restore_Regulation();
+                        Restore_Regulation("Delete Regulation.bin and restore backup before proceeding?");
                     }
                     else if (result == DialogResult.Cancel)
                     {
@@ -684,10 +683,10 @@ namespace ER_Buddy_Randomizer
                 b_settingsSet.Enabled = false;
         }
 
-        private void Restore_Regulation()
+        private void Restore_Regulation(string restoreMessage)
         {
             string regulationPath = openFileDialog1.FileName;
-            DialogResult result = MessageBox.Show("Delete Regulation.bin and restore backup?", "Confirm", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show(restoreMessage, "Confirm", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 FileSystem.DeleteFile(regulationPath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
@@ -699,7 +698,7 @@ namespace ER_Buddy_Randomizer
 
         private void b_restoreRegulation_Click(object sender, EventArgs e)
         {
-            Restore_Regulation();
+            Restore_Regulation("Delete Regulation.bin and restore backup?");
         }
 
         private void n_fpMin_ValueChanged(object sender, EventArgs e)
