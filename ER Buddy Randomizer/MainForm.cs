@@ -459,15 +459,17 @@ namespace ER_Buddy_Randomizer
                 float xOffset = 0;
                 if (isMultiSummon)
                 {
-                    float buddyWidth = (float)newNpcRow["hitRadius"].Value * (float).75;
+                    float buddyWidth = (float)newNpcRow["hitRadius"].Value;// * (float).75;
                     float xOffsetIncrement = buddyWidth;
 
+                    //this part doesn't actually make sense, but whatever.
                     xOffset = (float)buddyParam.Rows[i - 1]["x_offset"].Value;
                     if (xOffset >= 0)
                         xOffset += xOffsetIncrement; //increment
                     else
                         xOffset -= xOffsetIncrement; //decrement
                     xOffset *= -1; //invert
+
                 }
                 buddyParamRow["x_offset"].Value = xOffset; //horizontal offset 2
 
