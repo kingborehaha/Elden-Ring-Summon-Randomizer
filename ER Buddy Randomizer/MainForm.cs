@@ -617,6 +617,9 @@ namespace ER_Buddy_Randomizer
             GC.Collect(); //free memory
 
             UpdateConsole("Finished!");
+            System.Media.SystemSounds.Exclamation.Play(); //make noise
+            MessageBox.Show("All done!","Randomization Finished",MessageBoxButtons.OK);
+
         }
 
         private void n_rngSeed_ValueChanged(object sender, EventArgs e)
