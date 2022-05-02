@@ -82,6 +82,7 @@
             this.preset_CHAOS = new System.Windows.Forms.ToolStripMenuItem();
             this.preset_family = new System.Windows.Forms.ToolStripMenuItem();
             this.preset_playground = new System.Windows.Forms.ToolStripMenuItem();
+            this.balancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label17 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -178,7 +179,6 @@
             this.label12.Size = new System.Drawing.Size(74, 15);
             this.label12.TabIndex = 29;
             this.label12.Text = "NPC Chance";
-            this.toolTip1.SetToolTip(this.label12, "Minimum amount of buddies to be summoned");
             this.label12.Visible = false;
             // 
             // numericUpDown3
@@ -259,7 +259,6 @@
             this.label16.Size = new System.Drawing.Size(93, 15);
             this.label16.TabIndex = 45;
             this.label16.Text = "HP Cost Chance";
-            this.toolTip1.SetToolTip(this.label16, "Chance an ash will cost HP instead of FP (100 = 100%)");
             // 
             // n_fpMin
             // 
@@ -523,7 +522,6 @@
             this.max.Size = new System.Drawing.Size(100, 15);
             this.max.TabIndex = 5;
             this.max.Text = "Multi-Buddy Max";
-            this.toolTip1.SetToolTip(this.max, "Minimum amount of buddies to be summoned");
             // 
             // n_multipleChanceBase
             // 
@@ -548,7 +546,6 @@
             this.label7.Size = new System.Drawing.Size(78, 15);
             this.label7.TabIndex = 16;
             this.label7.Text = "Dupe Chance";
-            this.toolTip1.SetToolTip(this.label7, "Chance for a multiple summon to spawn the same character again");
             // 
             // n_multipleChanceAdditional
             // 
@@ -753,7 +750,8 @@
             this.preset_reasonable,
             this.preset_CHAOS,
             this.preset_family,
-            this.preset_playground});
+            this.preset_playground,
+            this.balancedToolStripMenuItem});
             this.settingsPresetsToolStripMenuItem.Name = "settingsPresetsToolStripMenuItem";
             this.settingsPresetsToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
             this.settingsPresetsToolStripMenuItem.Text = "Settings Presets";
@@ -761,37 +759,44 @@
             // preset_fun
             // 
             this.preset_fun.Name = "preset_fun";
-            this.preset_fun.Size = new System.Drawing.Size(135, 22);
+            this.preset_fun.Size = new System.Drawing.Size(180, 22);
             this.preset_fun.Text = "Fun";
             this.preset_fun.Click += new System.EventHandler(this.preset_fun_Click);
             // 
             // preset_reasonable
             // 
             this.preset_reasonable.Name = "preset_reasonable";
-            this.preset_reasonable.Size = new System.Drawing.Size(135, 22);
+            this.preset_reasonable.Size = new System.Drawing.Size(180, 22);
             this.preset_reasonable.Text = "Reasonable";
             this.preset_reasonable.Click += new System.EventHandler(this.preset_reasonable_Click);
             // 
             // preset_CHAOS
             // 
             this.preset_CHAOS.Name = "preset_CHAOS";
-            this.preset_CHAOS.Size = new System.Drawing.Size(135, 22);
+            this.preset_CHAOS.Size = new System.Drawing.Size(180, 22);
             this.preset_CHAOS.Text = "CHAOS";
             this.preset_CHAOS.Click += new System.EventHandler(this.preset_CHAOS_Click);
             // 
             // preset_family
             // 
             this.preset_family.Name = "preset_family";
-            this.preset_family.Size = new System.Drawing.Size(135, 22);
+            this.preset_family.Size = new System.Drawing.Size(180, 22);
             this.preset_family.Text = "Family";
             this.preset_family.Click += new System.EventHandler(this.preset_family_Click);
             // 
             // preset_playground
             // 
             this.preset_playground.Name = "preset_playground";
-            this.preset_playground.Size = new System.Drawing.Size(135, 22);
+            this.preset_playground.Size = new System.Drawing.Size(180, 22);
             this.preset_playground.Text = "Playground";
             this.preset_playground.Click += new System.EventHandler(this.preset_playground_Click);
+            // 
+            // balancedToolStripMenuItem
+            // 
+            this.balancedToolStripMenuItem.Name = "balancedToolStripMenuItem";
+            this.balancedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.balancedToolStripMenuItem.Text = "\"Balanced\"";
+            this.balancedToolStripMenuItem.Click += new System.EventHandler(this.balancedToolStripMenuItem_Click);
             // 
             // label17
             // 
@@ -985,5 +990,6 @@
         private NumericUpDown n_variantReuseChance;
         private Label label18;
         private CheckBox cb_buddyReuse;
+        private ToolStripMenuItem balancedToolStripMenuItem;
     }
 }
