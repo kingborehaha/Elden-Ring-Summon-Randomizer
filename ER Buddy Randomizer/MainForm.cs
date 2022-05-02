@@ -4,7 +4,6 @@ using Microsoft.VisualBasic.FileIO;
 /*
  TODO (someday)
  * BuddyStoneParam stuff for extra utility.
- * Figure out a cool way to handle horizontal offsets for multi buddies. Reduced increments for summons with many multi buddies? & influenced by size?
  * Vague balancing: establish multiple sets of spEffects with diminished mults for multi-buddies
  * Only tick buddyParam follow player type depending on how big they are?
 */
@@ -27,6 +26,25 @@ namespace ER_Buddy_Randomizer
             { "playground", "20,90,8,50,50,False,10,3,0,0,0,0,0,True," },
             { "balanced", "30,20,3,50,100,False,1,1,30,100,10,300,900,True," },
         };
+        /*
+        public List<int> npcBlacklist_BrokenAI = new()
+        {
+            //list of npc IDs to exclude since they just don't work at all
+            //unimplemented
+            0,
+        
+        };
+        */
+        /*
+        public List<int> npcBlacklist_BadSpawn = new()
+        {
+            //list of npc IDs to exclude since they more often than not spawn inside of the ground
+            //unimplemented
+            0,
+            46300000, //rune bear
+
+        };
+        */
 
         public MainForm()
         {
@@ -248,30 +266,41 @@ namespace ER_Buddy_Randomizer
             List<int> goodNpcThinkIDs = new();
             foreach (PARAM.Row NpcRow in npcParam.Rows.ToList())
             {
-                if ((Int32)npcParam[NpcRow.ID]["behaviorVariationId"].Value > 10000 //not a c0000 NPC
-                //&& NpcRow.ID < 1000000000 //not a spirit ash npc
-                    && NpcRow.ID < 89000000) //not a cutscene NPC (probably) (this disallows some c0000's fyi. maybe just non-combat ones though.)
+                int npcID = NpcRow.ID;
+
+                /*
+                //DEBUG
+                float mySizeTest = (float)NpcRow["hitHeight"].Value + (float)NpcRow["hitRadius"].Value;
+                if (mySizeTest < 6)
+                {
+                    continue;
+                }
+                */
+                
+                if ((Int32)npcParam[npcID]["behaviorVariationId"].Value > 10000 //not a c0000 NPC
+                //&& npcID < 1000000000 //not a spirit ash npc
+                    && npcID < 89000000) //not a cutscene NPC (probably) (this disallows some c0000's fyi. maybe just non-combat ones though.)
                 {
 
                     //figure out the best npcThinkID to use
                     for (int i = npcThinkParam.Rows.Count - 1; i >= 0; i--) //iterate backwards to catch the juicy variant IDs first
                     {
                         PARAM.Row row2 = npcThinkParam.Rows[i];
-                        if (NpcRow.ID == row2.ID
-                        || NpcRow.ID - NpcRow.ID % 10 == row2.ID
-                        || NpcRow.ID - NpcRow.ID % 100 == row2.ID
-                        || NpcRow.ID - NpcRow.ID % 1000 == row2.ID
-                        || NpcRow.ID - NpcRow.ID % 10000 == row2.ID
-                        || NpcRow.ID - NpcRow.ID % 100000 == row2.ID)
+                        if (npcID == row2.ID
+                        || npcID - npcID % 10 == row2.ID
+                        || npcID - npcID % 100 == row2.ID
+                        || npcID - npcID % 1000 == row2.ID
+                        || npcID - npcID % 10000 == row2.ID
+                        || npcID - npcID % 100000 == row2.ID)
                         {
-                            goodNpcIDs.Add(NpcRow.ID);
+                            goodNpcIDs.Add(npcID);
                             goodNpcThinkIDs.Add(row2.ID);
                             break;
                         }
                         else if (i == 0)
                         {
                             //throw new InvalidOperationException("Couldn't find an NpcThinkParam entry! Weird, right?");
-                            MessageBox.Show("Couldn't find a good NpcThinkParam entry!\nOffending NpcParam ID: " + NpcRow.ID + "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "Error", MessageBoxButtons.OK);
+                            MessageBox.Show("Couldn't find a good NpcThinkParam entry!\nOffending NpcParam ID: " + npcID + "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "Error", MessageBoxButtons.OK);
                         }
                     }
                 }
@@ -388,7 +417,6 @@ namespace ER_Buddy_Randomizer
                         //Remove entries if Buddy Reuse is disabled
                         goodNpcIDs.Remove(rng_index);
                         goodNpcThinkIDs.Remove(rng_index);
-
                     }
                 }
                 #endregion
@@ -410,9 +438,23 @@ namespace ER_Buddy_Randomizer
                 newNpcRow["hp"].Value = (UInt32)Math.Floor(baseHP * maxHPMod); //add onto existing multiplier
                 */
 
-                newNpcRow["teamType"].Value = (Byte)47; //spirit summon
+                newNpcRow["teamType"].Value = (byte)47; //spirit summon
                 newNpcRow["itemLotId_enemy"].Value = -1;
                 newNpcRow["itemLotId_map"].Value = -1;
+                newNpcRow["GameClearSpEffectID"].Value = -1;
+                newNpcRow["getSoul"].Value = (uint)0;
+
+                //max map hit radii to prevent spawning issues
+                float maxHitRadius = 1; //very low!
+                float maxHitHeight = 5; //this could probably be tested more
+                if ((float)newNpcRow["hitRadius"].Value > maxHitRadius)
+                {
+                    newNpcRow["hitRadius"].Value = maxHitRadius;
+                }
+                if ((float)newNpcRow["hitHeight"].Value > maxHitHeight)
+                {
+                    newNpcRow["hitHeight"].Value = maxHitHeight;
+                }
 
                 //npcParam Special Effects
                 int[] buddyEffects = { 295000, 296000, 297000 }; //special effects to be inserted into new npcParam
@@ -451,16 +493,18 @@ namespace ER_Buddy_Randomizer
                 buddyParamRow["appearOnAroundSekihi"].Value = (byte)0; //always summon around player
                 buddyParamRow["pcFollowType"].Value = (byte)0; //0 = follow player around, 1 = don't?, 2 = ?
 
-                //vertical spawn offset
+
+
+                //spawn offsets
+                //this is all pretty dumb and I hate it
+                /* //Horizontal offset 2 (I was right about being wrong. There isn't a height offset)
                 float buddyHeight = (float)newNpcRow["hitHeight"].Value;
-                buddyParamRow["z_offset"].Value = buddyHeight * -1; //vertical spawn offset 1
-
-
-                //horizontal spawn offset
+                buddyParamRow["z_offset"].Value = buddyHeight * buddyHeightMult * -1; //horizontal offset 2
+                */
                 float xOffset = 0;
+                float buddyWidth = (float)newNpcRow["chrHitRadius"].Value;// * (float).75;
                 if (isMultiSummon)
                 {
-                    float buddyWidth = (float)newNpcRow["hitRadius"].Value;// * (float).75;
                     float xOffsetIncrement = buddyWidth;
 
                     //this part doesn't actually make sense, but whatever.
@@ -472,7 +516,9 @@ namespace ER_Buddy_Randomizer
                     xOffset *= -1; //invert
 
                 }
-                buddyParamRow["x_offset"].Value = xOffset; //horizontal offset 2
+                buddyParamRow["x_offset"].Value = xOffset; //horizontal offset 1
+                buddyParamRow["z_offset"].Value = buddyWidth * -1; //horizontal offset 2
+
 
                 //special effect scalers
                 for (var iLv = 0; iLv <= 10; iLv++)
@@ -765,6 +811,11 @@ namespace ER_Buddy_Randomizer
         {
             tb_settings.Text = presetList["balanced"];
             StringToSettings();
+        }
+
+        private void setNPCIDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

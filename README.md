@@ -15,6 +15,12 @@
 - Run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
+### v1.0.2
+- Capped summon map collision radii (Prevents spawning in the ground. Incidentally lets them fit in small areas)
+- Adjusted spawn offsets.
+- Summons no longer retain NG+ scaling effects from whichever enemy they were copied from.
+- Summons no longer drop runes.
+
 ### v1.0.1
 - Added 'Balanced' preset. 
 - Adjusted 'Reasonable' preset.
