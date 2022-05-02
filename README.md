@@ -7,7 +7,7 @@
 - Do not run this tool on Regulation.bin in Elden Ring's "Game" folder. If you do and play online, you could potentially be banned.
 
 ## How to Use
-- Download Mod Engine 2 https://github.com/soulsmods/ModEngine2
+- Download Mod Engine 2 https://github.com/soulsmods/ModEngine2/releases
 - Copy "regulation.bin" from Elden Ring's "Game" folder to Mod Engine 2's "Mod" folder.
 - Run Summon Randomizer. If the program doesn't run, you may need to install .NET 6.0 first.
 - In the randomizer, browse and select "regulation.bin" within the Mod Engine 2's "Mod" folder.
