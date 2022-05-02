@@ -10,6 +10,7 @@
 - Download Mod Engine 2 https://github.com/soulsmods/ModEngine2
 - Copy regulation.bin from Elden Ring's "Game" folder to Mod Engine 2's "Mod" folder.
 - Run Summon Randomizer. Load regulation.bin within the Mod Engine 2's "Mod" folder.
+- If the program doesn't run, you may need to install .NET 6.0 first.
 - Once you are finished running Summon Randomizer, run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
