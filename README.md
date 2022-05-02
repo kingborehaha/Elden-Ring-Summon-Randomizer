@@ -13,6 +13,11 @@
 - Once you are finished running Summon Randomizer, run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
+### v1.0.1
+- Added 'Balanced' preset. 
+- Adjusted 'Reasonable' preset.
+- Removed accidental bad tooltips for certain UI elements
+
 ### v1.0.0
 Public Release
 - Changed/fixed how multi-buddy spawn offsets are calculated
