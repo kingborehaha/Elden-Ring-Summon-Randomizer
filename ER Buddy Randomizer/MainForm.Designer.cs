@@ -35,12 +35,8 @@
             this.n_damageMult = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label12 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.n_rngSeed = new System.Windows.Forms.NumericUpDown();
             this.label_randomseed = new System.Windows.Forms.Label();
-            this.cb_npcEquipment = new System.Windows.Forms.CheckBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.n_fpMin = new System.Windows.Forms.NumericUpDown();
             this.n_fpMax = new System.Windows.Forms.NumericUpDown();
             this.n_hpMult = new System.Windows.Forms.NumericUpDown();
@@ -56,12 +52,13 @@
             this.cb_bigBuddy = new System.Windows.Forms.CheckBox();
             this.n_multipleDupeChance = new System.Windows.Forms.NumericUpDown();
             this.n_multipleMax = new System.Windows.Forms.NumericUpDown();
-            this.max = new System.Windows.Forms.Label();
             this.n_multipleChanceBase = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
             this.n_multipleChanceAdditional = new System.Windows.Forms.NumericUpDown();
             this.n_variantReuseChance = new System.Windows.Forms.NumericUpDown();
             this.cb_buddyReuse = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.max = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.tb_settings = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -69,7 +66,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.t_console = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -89,7 +85,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.n_damageMult)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_rngSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_fpMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_fpMax)).BeginInit();
@@ -170,28 +165,6 @@
             this.toolTip1.InitialDelay = 200;
             this.toolTip1.ReshowDelay = 40;
             // 
-            // label12
-            // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(308, 370);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(74, 15);
-            this.label12.TabIndex = 29;
-            this.label12.Text = "NPC Chance";
-            this.label12.Visible = false;
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.numericUpDown3.Enabled = false;
-            this.numericUpDown3.Location = new System.Drawing.Point(320, 388);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(50, 23);
-            this.numericUpDown3.TabIndex = 30;
-            this.toolTip1.SetToolTip(this.numericUpDown3, "Chance for a summon to be a c0000 human NPC (100 = 100%)\r\n");
-            this.numericUpDown3.Visible = false;
-            // 
             // n_rngSeed
             // 
             this.n_rngSeed.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -234,31 +207,6 @@
             this.label_randomseed.Text = "(-1 = Random Seed)";
             this.toolTip1.SetToolTip(this.label_randomseed, "Input a number for consistent randomizer. If no seed is provided, one will be gen" +
         "erated randomly.");
-            // 
-            // cb_npcEquipment
-            // 
-            this.cb_npcEquipment.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.cb_npcEquipment.AutoSize = true;
-            this.cb_npcEquipment.Enabled = false;
-            this.cb_npcEquipment.Location = new System.Drawing.Point(320, 347);
-            this.cb_npcEquipment.Name = "cb_npcEquipment";
-            this.cb_npcEquipment.Size = new System.Drawing.Size(173, 19);
-            this.cb_npcEquipment.TabIndex = 31;
-            this.cb_npcEquipment.Text = "Randomize NPC Equipment";
-            this.toolTip1.SetToolTip(this.cb_npcEquipment, "Randomize NPC Equipment, like weapons and armor.\r\nWill probably break things.\r\nI\'" +
-        "ll probably always give them enough stats? idk.\r\n");
-            this.cb_npcEquipment.UseVisualStyleBackColor = true;
-            this.cb_npcEquipment.Visible = false;
-            // 
-            // label16
-            // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(322, 208);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(93, 15);
-            this.label16.TabIndex = 45;
-            this.label16.Text = "HP Cost Chance";
             // 
             // n_fpMin
             // 
@@ -513,16 +461,6 @@
             0,
             0});
             // 
-            // max
-            // 
-            this.max.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.max.AutoSize = true;
-            this.max.Location = new System.Drawing.Point(149, 165);
-            this.max.Name = "max";
-            this.max.Size = new System.Drawing.Size(100, 15);
-            this.max.TabIndex = 5;
-            this.max.Text = "Multi-Buddy Max";
-            // 
             // n_multipleChanceBase
             // 
             this.n_multipleChanceBase.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -536,16 +474,6 @@
             0,
             0,
             0});
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(151, 208);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 15);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Dupe Chance";
             // 
             // n_multipleChanceAdditional
             // 
@@ -592,6 +520,36 @@
         "ot affect Multi-buddy dupe chance (which only affects multi-buddies)");
             this.cb_buddyReuse.UseVisualStyleBackColor = true;
             this.cb_buddyReuse.CheckedChanged += new System.EventHandler(this.cb_buddyReuse_CheckedChanged);
+            // 
+            // label16
+            // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(322, 208);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(93, 15);
+            this.label16.TabIndex = 45;
+            this.label16.Text = "HP Cost Chance";
+            // 
+            // max
+            // 
+            this.max.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.max.AutoSize = true;
+            this.max.Location = new System.Drawing.Point(149, 165);
+            this.max.Name = "max";
+            this.max.Size = new System.Drawing.Size(100, 15);
+            this.max.TabIndex = 5;
+            this.max.Text = "Multi-Buddy Max";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(151, 208);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 15);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Dupe Chance";
             // 
             // tb_settings
             // 
@@ -670,18 +628,6 @@
             this.label11.TabIndex = 25;
             this.label11.Text = "RNG Control";
             // 
-            // label13
-            // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(308, 319);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(217, 21);
-            this.label13.TabIndex = 33;
-            this.label13.Text = "Human NPC Summons (todo)";
-            this.label13.Visible = false;
-            // 
             // label14
             // 
             this.label14.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -759,42 +705,42 @@
             // preset_fun
             // 
             this.preset_fun.Name = "preset_fun";
-            this.preset_fun.Size = new System.Drawing.Size(180, 22);
+            this.preset_fun.Size = new System.Drawing.Size(135, 22);
             this.preset_fun.Text = "Fun";
             this.preset_fun.Click += new System.EventHandler(this.preset_fun_Click);
             // 
             // preset_reasonable
             // 
             this.preset_reasonable.Name = "preset_reasonable";
-            this.preset_reasonable.Size = new System.Drawing.Size(180, 22);
+            this.preset_reasonable.Size = new System.Drawing.Size(135, 22);
             this.preset_reasonable.Text = "Reasonable";
             this.preset_reasonable.Click += new System.EventHandler(this.preset_reasonable_Click);
             // 
             // preset_CHAOS
             // 
             this.preset_CHAOS.Name = "preset_CHAOS";
-            this.preset_CHAOS.Size = new System.Drawing.Size(180, 22);
+            this.preset_CHAOS.Size = new System.Drawing.Size(135, 22);
             this.preset_CHAOS.Text = "CHAOS";
             this.preset_CHAOS.Click += new System.EventHandler(this.preset_CHAOS_Click);
             // 
             // preset_family
             // 
             this.preset_family.Name = "preset_family";
-            this.preset_family.Size = new System.Drawing.Size(180, 22);
+            this.preset_family.Size = new System.Drawing.Size(135, 22);
             this.preset_family.Text = "Family";
             this.preset_family.Click += new System.EventHandler(this.preset_family_Click);
             // 
             // preset_playground
             // 
             this.preset_playground.Name = "preset_playground";
-            this.preset_playground.Size = new System.Drawing.Size(180, 22);
+            this.preset_playground.Size = new System.Drawing.Size(135, 22);
             this.preset_playground.Text = "Playground";
             this.preset_playground.Click += new System.EventHandler(this.preset_playground_Click);
             // 
             // balancedToolStripMenuItem
             // 
             this.balancedToolStripMenuItem.Name = "balancedToolStripMenuItem";
-            this.balancedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.balancedToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.balancedToolStripMenuItem.Text = "\"Balanced\"";
             this.balancedToolStripMenuItem.Click += new System.EventHandler(this.balancedToolStripMenuItem_Click);
             // 
@@ -878,10 +824,6 @@
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label_randomseed);
             this.Controls.Add(this.n_rngSeed);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.cb_npcEquipment);
-            this.Controls.Add(this.numericUpDown3);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.n_hpMult);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.t_console);
@@ -911,7 +853,6 @@
             this.Text = "Elden Ring Summon Randomizer";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.n_damageMult)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_rngSeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_fpMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_fpMax)).EndInit();
@@ -946,10 +887,6 @@
         private TextBox t_console;
         private Label label11;
         private NumericUpDown n_hpMult;
-        private Label label12;
-        private NumericUpDown numericUpDown3;
-        private CheckBox cb_npcEquipment;
-        private Label label13;
         private NumericUpDown n_rngSeed;
         private Label label_randomseed;
         private Label label14;

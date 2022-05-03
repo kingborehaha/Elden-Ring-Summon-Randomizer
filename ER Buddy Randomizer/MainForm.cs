@@ -3,11 +3,8 @@ using Microsoft.VisualBasic.FileIO;
 
 /*
  TODO (someday)
- * Figure out teamAttackEffectivity handling. I vaguely want it to potentially be non-zero for multi buddies? Maybe not though.
  * Figure out and handle buddy param "pay attention to player targeting".
- * BuddyStoneParam stuff for extra utility.
  * Vague balancing: establish multiple sets of spEffects with diminished mults for multi-buddies
- * Only tick buddyParam follow player type depending on how big they are?
 */
 
 
@@ -29,25 +26,18 @@ namespace ER_Buddy_Randomizer
             { "playground", "20,90,8,50,50,False,10,3,0,0,0,0,0,True," },
             { "balanced", "30,20,3,50,100,False,1,1,30,100,10,300,900,True," },
         };
-        /*
         public List<int> npcBlacklist_BrokenAI = new()
         {
             //list of npc IDs to exclude since they just don't work at all
             //unimplemented
             0,
-        
-        };
-        */
-        /*
-        public List<int> npcBlacklist_BadSpawn = new()
-        {
-            //list of npc IDs to exclude since they more often than not spawn inside of the ground
-            //unimplemented
-            0,
-            46300000, //rune bear
+            //ancestor with staff?
+            //bloodhound? (teleporting issue?)
+            //radahn? (only one phase or another?)
+            //astel?
 
         };
-        */
+        
 
         public MainForm()
         {
@@ -60,7 +50,6 @@ namespace ER_Buddy_Randomizer
             b_restoreRegulation.Enabled = false;
             string version = Application.ProductVersion;
             Text = Text + string.Format(" {0}", version);
-
         }
 
         private static PARAM.Row InsertParamRow(PARAM param, PARAM.Row row, int newID)
