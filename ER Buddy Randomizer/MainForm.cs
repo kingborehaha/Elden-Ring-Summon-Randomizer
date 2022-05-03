@@ -8,6 +8,7 @@ using Microsoft.VisualBasic.FileIO;
  * BuddyStoneParam stuff for extra utility.
  * Vague balancing: establish multiple sets of spEffects with diminished mults for multi-buddies
  * Only tick buddyParam follow player type depending on how big they are?
+ * c0000 human NPCs. i do not especially want to figure out c0000 AI and relevent AI notifier spEffects, so this might never happen.
 */
 
 
@@ -21,13 +22,13 @@ namespace ER_Buddy_Randomizer
         public Dictionary<string, string> presetList = new()
         {
             //list of settings presets
-            { "default", "20,50,5,50,80,False,2,3,30,60,10,300,600,True," },
-            { "fun", "20,50,5,50,80,False,2,3,30,60,10,300,600,True," },
-            { "reasonable", "30,20,4,60,100,False,1.5,1.25,30,100,10,300,900,True," },
-            { "chaos", "0,100,5,100,0,False,3,2,60,100,50,600,1000,False," },
-            { "family", "50,100,8,80,100,False,1.5,2,30,60,10,300,600,False," },
-            { "playground", "20,90,8,50,50,False,10,3,0,0,0,0,0,True," },
-            { "balanced", "30,20,3,50,100,False,1,1,30,100,10,300,900,True," },
+            { "default", "20,50,5,50,80,False,2,3,30,60,10,300,600,True,True,False,False," },
+            { "fun", "20,50,5,50,80,False,2,3,30,60,10,300,600,True,True,False,False" },
+            { "reasonable", "30,20,4,60,100,False,1.5,1.25,30,100,10,300,900,True,True,False,False," },
+            { "chaos", "0,100,5,100,0,False,3,2,60,100,50,600,1000,False,False,False,True," },
+            { "family", "50,100,8,80,100,False,1.5,2,30,60,10,300,600,False,True,True,False," },
+            { "playground", "20,90,8,50,50,False,10,3,0,0,0,0,0,True,True,True,False," },
+            { "balanced", "30,20,3,50,100,False,1,1,30,100,10,300,900,True,True,False,False," },
         };
         /*
         public List<int> npcBlacklist_BrokenAI = new()
@@ -35,6 +36,10 @@ namespace ER_Buddy_Randomizer
             //list of npc IDs to exclude since they just don't work at all
             //unimplemented
             0,
+            //ancestor w/ staff?
+            //teleporting bloodhound? (when they get stuck in a wall?
+            //radahn
+            //
         
         };
         */
@@ -90,17 +95,22 @@ namespace ER_Buddy_Randomizer
             settingsList.Add(n_multipleMax.Value.ToString());
             settingsList.Add(n_multipleChanceAdditional.Value.ToString());
             settingsList.Add(n_multipleDupeChance.Value.ToString());
-            settingsList.Add(cb_buddyReuse.Checked.ToString());
             //
+            settingsList.Add(cb_buddyReuse.Checked.ToString());
             settingsList.Add(n_hpMult.Value.ToString());
             settingsList.Add(n_damageMult.Value.ToString());
             settingsList.Add(n_fpMin.Value.ToString());
             settingsList.Add(n_fpMax.Value.ToString());
+            //
             settingsList.Add(n_hpChance.Value.ToString());
             settingsList.Add(n_hpMin.Value.ToString());
             settingsList.Add(n_hpMax.Value.ToString());
-            //
             settingsList.Add(cb_bigBuddy.Checked.ToString());
+            //1.1.0
+            settingsList.Add(cb_SmallFollow.Checked.ToString());
+            settingsList.Add(cb_BigFollow.Checked.ToString());
+            settingsList.Add(cb_BuddySmell.Checked.ToString());
+
 
             string settingsString = "";
             foreach (string str in settingsList)
@@ -117,29 +127,20 @@ namespace ER_Buddy_Randomizer
             //read settings string, set fields
             //(nobody make fun of me for this shitty implementation, please.)
 
-            int lastEntry = 13; //way to make sure i'm not too stupid
-
             List<string> settingsList = tb_settings.Text.Split(",",StringSplitOptions.RemoveEmptyEntries).ToList();
             List<string> defaultSettings = presetList["default"].Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
-
+            
+            //check and handle settings string being too short
             bool showWarning = false;
             if (settingsList.Count != defaultSettings.Count)
+            {
                 showWarning = true;
-
-            
-            //get current settings to update out-of-date settings string (if required)
-            for (var i = settingsList.Count; i < defaultSettings.Count; i++)
-            {
-                settingsList.Add(defaultSettings[i]);
+                //Update missing settings list entries with default settings values
+                for (var i = settingsList.Count; i < defaultSettings.Count; i++)
+                {
+                    settingsList.Add(defaultSettings[i]);
+                }
             }
-
-            /*
-            if (settingsList.Count != lastEntry + 1)
-            {
-                MessageBox.Show("Settings Preset has wrong number of settings.\n\nMake sure you properly copied and pasted the entire string.\nIf this setting preset is from a different version, it may be incompatible.", "Error", MessageBoxButtons.OK);
-                return;
-            }
-            */
 
             try
             {
@@ -149,17 +150,21 @@ namespace ER_Buddy_Randomizer
                 n_multipleMax.Value = decimal.Parse(settingsList[2]);
                 n_multipleChanceAdditional.Value = decimal.Parse(settingsList[3]);
                 n_multipleDupeChance.Value = decimal.Parse(settingsList[4]);
-                cb_buddyReuse.Checked = bool.Parse(settingsList[5]);
                 //
+                cb_buddyReuse.Checked = bool.Parse(settingsList[5]); //bool
                 n_hpMult.Value = decimal.Parse(settingsList[6]);
                 n_damageMult.Value = decimal.Parse(settingsList[7]);
                 n_fpMin.Value = decimal.Parse(settingsList[8]);
                 n_fpMax.Value = decimal.Parse(settingsList[9]);
+                //
                 n_hpChance.Value = decimal.Parse(settingsList[10]);
                 n_hpMin.Value = decimal.Parse(settingsList[11]);
                 n_hpMax.Value = decimal.Parse(settingsList[12]);
-                //
-                cb_bigBuddy.Checked = bool.Parse(settingsList[lastEntry]);
+                cb_bigBuddy.Checked = bool.Parse(settingsList[13]); //bool
+                //1.1.0
+                cb_SmallFollow.Checked = bool.Parse(settingsList[14]); //bool
+                cb_BigFollow.Checked = bool.Parse(settingsList[15]); //bool
+                cb_BuddySmell.Checked = bool.Parse(settingsList[16]); //bool
 
                 if (showWarning)
                 {
