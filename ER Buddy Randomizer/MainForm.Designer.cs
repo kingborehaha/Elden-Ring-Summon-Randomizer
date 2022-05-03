@@ -56,6 +56,9 @@
             this.n_multipleChanceAdditional = new System.Windows.Forms.NumericUpDown();
             this.n_variantReuseChance = new System.Windows.Forms.NumericUpDown();
             this.cb_buddyReuse = new System.Windows.Forms.CheckBox();
+            this.cb_BigFollow = new System.Windows.Forms.CheckBox();
+            this.cb_SmallFollow = new System.Windows.Forms.CheckBox();
+            this.cb_TeamAttack = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.max = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -85,9 +88,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.cb_BigFollow = new System.Windows.Forms.CheckBox();
-            this.cb_SmallFollow = new System.Windows.Forms.CheckBox();
-            this.cb_BuddySmell = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.n_damageMult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_rngSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_fpMin)).BeginInit();
@@ -525,6 +525,51 @@
             this.cb_buddyReuse.UseVisualStyleBackColor = true;
             this.cb_buddyReuse.CheckedChanged += new System.EventHandler(this.cb_buddyReuse_CheckedChanged);
             // 
+            // cb_BigFollow
+            // 
+            this.cb_BigFollow.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cb_BigFollow.AutoSize = true;
+            this.cb_BigFollow.Location = new System.Drawing.Point(25, 349);
+            this.cb_BigFollow.Name = "cb_BigFollow";
+            this.cb_BigFollow.Size = new System.Drawing.Size(193, 19);
+            this.cb_BigFollow.TabIndex = 65;
+            this.cb_BigFollow.Text = "Large Buddies Follow the Player";
+            this.toolTip1.SetToolTip(this.cb_BigFollow, "Determines if large sized buddies will follow the player if they are far enough a" +
+        "way.\r\nIf false, buddies will wander around instead..");
+            this.cb_BigFollow.UseVisualStyleBackColor = true;
+            // 
+            // cb_SmallFollow
+            // 
+            this.cb_SmallFollow.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cb_SmallFollow.AutoSize = true;
+            this.cb_SmallFollow.Checked = true;
+            this.cb_SmallFollow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_SmallFollow.Location = new System.Drawing.Point(25, 324);
+            this.cb_SmallFollow.Name = "cb_SmallFollow";
+            this.cb_SmallFollow.Size = new System.Drawing.Size(221, 19);
+            this.cb_SmallFollow.TabIndex = 66;
+            this.cb_SmallFollow.Text = "Non-Large Buddies Follow the Player";
+            this.toolTip1.SetToolTip(this.cb_SmallFollow, "Determines if non-large sized buddies will follow the player if they are far enou" +
+        "gh away.\r\nIf false, buddies will wander around instead.");
+            this.cb_SmallFollow.UseVisualStyleBackColor = true;
+            // 
+            // cb_TeamAttack
+            // 
+            this.cb_TeamAttack.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cb_TeamAttack.AutoSize = true;
+            this.cb_TeamAttack.Checked = true;
+            this.cb_TeamAttack.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_TeamAttack.Location = new System.Drawing.Point(25, 374);
+            this.cb_TeamAttack.Name = "cb_TeamAttack";
+            this.cb_TeamAttack.Size = new System.Drawing.Size(182, 19);
+            this.cb_TeamAttack.TabIndex = 67;
+            this.cb_TeamAttack.Text = "Retain Team Attack Effectivity";
+            this.toolTip1.SetToolTip(this.cb_TeamAttack, "If true, buddies will be less aggressive when multiple AI allies are attacking th" +
+        "e same target.\r\nImpact depends on the buddy and how many allies are attacking th" +
+        "e same target.\r\n");
+            this.cb_TeamAttack.UseVisualStyleBackColor = true;
+            this.cb_TeamAttack.Visible = false;
+            // 
             // label16
             // 
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -811,54 +856,12 @@
             this.label12.TabIndex = 64;
             this.label12.Text = "Buddy Behavior";
             // 
-            // cb_BigFollow
-            // 
-            this.cb_BigFollow.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cb_BigFollow.AutoSize = true;
-            this.cb_BigFollow.Location = new System.Drawing.Point(25, 349);
-            this.cb_BigFollow.Name = "cb_BigFollow";
-            this.cb_BigFollow.Size = new System.Drawing.Size(193, 19);
-            this.cb_BigFollow.TabIndex = 65;
-            this.cb_BigFollow.Text = "Large Buddies Follow the Player";
-            this.toolTip1.SetToolTip(this.cb_BigFollow, "Determines if large sized buddies will follow the player if they are far enough a" +
-        "way");
-            this.cb_BigFollow.UseVisualStyleBackColor = true;
-            // 
-            // cb_SmallFollow
-            // 
-            this.cb_SmallFollow.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cb_SmallFollow.AutoSize = true;
-            this.cb_SmallFollow.Checked = true;
-            this.cb_SmallFollow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_SmallFollow.Location = new System.Drawing.Point(25, 324);
-            this.cb_SmallFollow.Name = "cb_SmallFollow";
-            this.cb_SmallFollow.Size = new System.Drawing.Size(221, 19);
-            this.cb_SmallFollow.TabIndex = 66;
-            this.cb_SmallFollow.Text = "Non-Large Buddies Follow the Player";
-            this.toolTip1.SetToolTip(this.cb_SmallFollow, "Determines if non-large sized buddies will follow the player if they are far enou" +
-        "gh away");
-            this.cb_SmallFollow.UseVisualStyleBackColor = true;
-            // 
-            // cb_BuddySmell
-            // 
-            this.cb_BuddySmell.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cb_BuddySmell.AutoSize = true;
-            this.cb_BuddySmell.Location = new System.Drawing.Point(25, 374);
-            this.cb_BuddySmell.Name = "cb_BuddySmell";
-            this.cb_BuddySmell.Size = new System.Drawing.Size(240, 19);
-            this.cb_BuddySmell.TabIndex = 67;
-            this.cb_BuddySmell.Text = "Buddies Sense Enemies in a Large Radius";
-            this.toolTip1.SetToolTip(this.cb_BuddySmell, "Determines if buddies will immediately and permanently be aware of any enemies in" +
-        " a large radius.\r\nIf not checked, buddies will behave how the original enemy did" +
-        ".");
-            this.cb_BuddySmell.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(537, 517);
-            this.Controls.Add(this.cb_BuddySmell);
+            this.Controls.Add(this.cb_TeamAttack);
             this.Controls.Add(this.cb_SmallFollow);
             this.Controls.Add(this.cb_BigFollow);
             this.Controls.Add(this.label12);
@@ -992,6 +995,6 @@
         private Label label12;
         private CheckBox cb_BigFollow;
         private CheckBox cb_SmallFollow;
-        private CheckBox cb_BuddySmell;
+        private CheckBox cb_TeamAttack;
     }
 }

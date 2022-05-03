@@ -93,7 +93,7 @@ namespace ER_Buddy_Randomizer
             //1.1.0
             settingsList.Add(cb_SmallFollow.Checked.ToString());
             settingsList.Add(cb_BigFollow.Checked.ToString());
-            settingsList.Add(cb_BuddySmell.Checked.ToString());
+            settingsList.Add(cb_TeamAttack.Checked.ToString());
 
 
             string settingsString = "";
@@ -172,7 +172,7 @@ namespace ER_Buddy_Randomizer
                 //1.1.0
                 cb_SmallFollow.Checked = bool.Parse(settingsList[14]); //bool
                 cb_BigFollow.Checked = bool.Parse(settingsList[15]); //bool
-                cb_BuddySmell.Checked = bool.Parse(settingsList[16]); //bool
+                cb_TeamAttack.Checked = bool.Parse(settingsList[16]); //bool
 
                 if (showWarning)
                 {
