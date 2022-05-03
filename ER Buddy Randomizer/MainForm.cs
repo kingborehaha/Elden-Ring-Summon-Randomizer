@@ -122,14 +122,6 @@ namespace ER_Buddy_Randomizer
                 settingsList.Add(defaultSettings[i]);
             }
 
-            /*
-            if (settingsList.Count != lastEntry + 1)
-            {
-                MessageBox.Show("Settings Preset has wrong number of settings.\n\nMake sure you properly copied and pasted the entire string.\nIf this setting preset is from a different version, it may be incompatible.", "Error", MessageBoxButtons.OK);
-                return;
-            }
-            */
-
             try
             {
                 //
