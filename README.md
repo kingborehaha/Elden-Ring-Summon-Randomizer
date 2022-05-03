@@ -16,7 +16,7 @@
 
 ## Updates
 ### v1.1.0
-- Summon AI now always behaves at 100% aggressiveness when they are not the primary attacker (in situations where multiple allies are attacking the same enemy).
+- [ADDED OPTION FOR] Summon AI now always behaves at 100% aggressiveness when they are not the primary attacker (in situations where multiple allies are attacking the same enemy).
 - Under the hood Settings Presets changes. Any future updates that include new settings will now update out-of-date settings presets and notify the user.
 
 ### v1.0.2

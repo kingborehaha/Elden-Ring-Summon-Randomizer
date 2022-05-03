@@ -88,6 +88,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.n_damageMult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_rngSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_fpMin)).BeginInit();
@@ -529,13 +531,13 @@
             // 
             this.cb_BigFollow.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cb_BigFollow.AutoSize = true;
-            this.cb_BigFollow.Location = new System.Drawing.Point(25, 349);
+            this.cb_BigFollow.Location = new System.Drawing.Point(25, 364);
             this.cb_BigFollow.Name = "cb_BigFollow";
             this.cb_BigFollow.Size = new System.Drawing.Size(193, 19);
             this.cb_BigFollow.TabIndex = 65;
             this.cb_BigFollow.Text = "Large Buddies Follow the Player";
-            this.toolTip1.SetToolTip(this.cb_BigFollow, "Determines if large sized buddies will follow the player if they are far enough a" +
-        "way.\r\nIf false, buddies will wander around instead..");
+            this.toolTip1.SetToolTip(this.cb_BigFollow, "Determines if large buddies will follow the player if they are far enough away.\r\n" +
+        "If false, buddies will wander around instead..");
             this.cb_BigFollow.UseVisualStyleBackColor = true;
             // 
             // cb_SmallFollow
@@ -543,14 +545,14 @@
             this.cb_SmallFollow.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cb_SmallFollow.AutoSize = true;
             this.cb_SmallFollow.Checked = true;
-            this.cb_SmallFollow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_SmallFollow.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.cb_SmallFollow.Location = new System.Drawing.Point(25, 324);
             this.cb_SmallFollow.Name = "cb_SmallFollow";
             this.cb_SmallFollow.Size = new System.Drawing.Size(221, 19);
             this.cb_SmallFollow.TabIndex = 66;
             this.cb_SmallFollow.Text = "Non-Large Buddies Follow the Player";
-            this.toolTip1.SetToolTip(this.cb_SmallFollow, "Determines if non-large sized buddies will follow the player if they are far enou" +
-        "gh away.\r\nIf false, buddies will wander around instead.");
+            this.toolTip1.SetToolTip(this.cb_SmallFollow, "Determines if non-large buddies will follow the player if they are far enough awa" +
+        "y.\r\nIf false, buddies will wander around instead.");
             this.cb_SmallFollow.UseVisualStyleBackColor = true;
             // 
             // cb_TeamAttack
@@ -559,14 +561,14 @@
             this.cb_TeamAttack.AutoSize = true;
             this.cb_TeamAttack.Checked = true;
             this.cb_TeamAttack.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_TeamAttack.Location = new System.Drawing.Point(25, 374);
+            this.cb_TeamAttack.Location = new System.Drawing.Point(25, 405);
             this.cb_TeamAttack.Name = "cb_TeamAttack";
             this.cb_TeamAttack.Size = new System.Drawing.Size(182, 19);
             this.cb_TeamAttack.TabIndex = 67;
             this.cb_TeamAttack.Text = "Retain Team Attack Effectivity";
             this.toolTip1.SetToolTip(this.cb_TeamAttack, "If true, buddies will be less aggressive when multiple AI allies are attacking th" +
         "e same target.\r\nImpact depends on the buddy and how many allies are attacking th" +
-        "e same target.\r\n");
+        "e same target.");
             this.cb_TeamAttack.UseVisualStyleBackColor = true;
             this.cb_TeamAttack.Visible = false;
             // 
@@ -856,11 +858,43 @@
             this.label12.TabIndex = 64;
             this.label12.Text = "Buddy Behavior";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(45, 380);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(144, 19);
+            this.checkBox1.TabIndex = 69;
+            this.checkBox1.Text = "Randomize Per-Buddy";
+            this.toolTip1.SetToolTip(this.checkBox1, "Determines if Large Buddy follow behavior will be randomized per-buddy");
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Enabled = false;
+            this.checkBox2.Location = new System.Drawing.Point(45, 341);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(144, 19);
+            this.checkBox2.TabIndex = 70;
+            this.checkBox2.Text = "Randomize Per-Buddy";
+            this.toolTip1.SetToolTip(this.checkBox2, "Randomize");
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(537, 517);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.cb_TeamAttack);
             this.Controls.Add(this.cb_SmallFollow);
             this.Controls.Add(this.cb_BigFollow);
@@ -996,5 +1030,7 @@
         private CheckBox cb_BigFollow;
         private CheckBox cb_SmallFollow;
         private CheckBox cb_TeamAttack;
+        private CheckBox checkBox1;
+        private CheckBox checkBox2;
     }
 }
