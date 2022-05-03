@@ -3,6 +3,8 @@ using Microsoft.VisualBasic.FileIO;
 
 /*
  TODO (someday)
+ * Figure out teamAttackEffectivity handling. I vaguely want it to potentially be non-zero for multi buddies? Maybe not though.
+ * Figure out and handle buddy param "pay attention to player targeting".
  * BuddyStoneParam stuff for extra utility.
  * Vague balancing: establish multiple sets of spEffects with diminished mults for multi-buddies
  * Only tick buddyParam follow player type depending on how big they are?
@@ -19,6 +21,7 @@ namespace ER_Buddy_Randomizer
         public Dictionary<string, string> presetList = new()
         {
             //list of settings presets
+            { "default", "20,50,5,50,80,False,2,3,30,60,10,300,600,True," },
             { "fun", "20,50,5,50,80,False,2,3,30,60,10,300,600,True," },
             { "reasonable", "30,20,4,60,100,False,1.5,1.25,30,100,10,300,900,True," },
             { "chaos", "0,100,5,100,0,False,3,2,60,100,50,600,1000,False," },
@@ -117,12 +120,26 @@ namespace ER_Buddy_Randomizer
             int lastEntry = 13; //way to make sure i'm not too stupid
 
             List<string> settingsList = tb_settings.Text.Split(",",StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> defaultSettings = presetList["default"].Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
 
+            bool showWarning = false;
+            if (settingsList.Count != defaultSettings.Count)
+                showWarning = true;
+
+            
+            //get current settings to update out-of-date settings string (if required)
+            for (var i = settingsList.Count; i < defaultSettings.Count; i++)
+            {
+                settingsList.Add(defaultSettings[i]);
+            }
+
+            /*
             if (settingsList.Count != lastEntry + 1)
             {
                 MessageBox.Show("Settings Preset has wrong number of settings.\n\nMake sure you properly copied and pasted the entire string.\nIf this setting preset is from a different version, it may be incompatible.", "Error", MessageBoxButtons.OK);
                 return;
             }
+            */
 
             try
             {
@@ -144,11 +161,21 @@ namespace ER_Buddy_Randomizer
                 //
                 cb_bigBuddy.Checked = bool.Parse(settingsList[lastEntry]);
 
+                if (showWarning)
+                {
+                    SettingsToString();
+                    MessageBox.Show("Settings have been set successfully." +
+                        "\nHowever, the Settings Preset was missing some settings: probably because of a Summon Randomizer update." +
+                        "\n\nAny missing settings have been set to default, and the Settings Preset has been updated to include missing settings."
+                        , "Notice", MessageBoxButtons.OK);
+                }
+
                 UpdateConsole("Applied Preset");
             }
             catch
             {
-                MessageBox.Show("Settings Preset is invalid.\n\nMake sure you properly copy/pasted the entire string.\nIf this setting preset is from a different version, it may be incompatible.", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Settings Preset is invalid.\n\nMake sure you properly copy/pasted the entire string.", "Error", MessageBoxButtons.OK);
+                return;
                 //SettingsToString();
             }
             return;
@@ -527,9 +554,10 @@ namespace ER_Buddy_Randomizer
                 }
                 #endregion
 
-                //npcThinkParam
+                #region npcThinkParam
                 npcThinkParam[npcThinkID]["isBuddyAI"].Value = true;
-
+                npcThinkParam[npcThinkID]["TeamAttackEffectivity"].Value = (byte)0; //vaguely want this to potentially be non-zero in consideration of multi buddies. hmm
+                #endregion
             }
 
             #region SpEffectParam
@@ -811,11 +839,6 @@ namespace ER_Buddy_Randomizer
         {
             tb_settings.Text = presetList["balanced"];
             StringToSettings();
-        }
-
-        private void setNPCIDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

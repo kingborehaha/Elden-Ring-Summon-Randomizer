@@ -15,6 +15,10 @@
 - Run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
+### v1.0.3
+- Summon AI now always behaves at 100% aggressiveness when they are not the primary attacker (in situations where multiple allies are attacking the same enemy).
+- Under the hood Settings Presets changes. Any future updates that include new settings will now update out-of-date settings presets and notify the user.
+
 ### v1.0.2
 - Capped summon map collision radii (Prevents spawning in the ground. Incidentally lets them fit in small areas)
 - Adjusted spawn offsets.
