@@ -18,13 +18,13 @@ namespace ER_Buddy_Randomizer
         public Dictionary<string, string> presetList = new()
         {
             //list of settings presets
-            { "default", "20,50,5,50,80,False,2,3,30,60,10,300,600,True,True,False,False," },
-            { "fun", "20,50,5,50,80,False,2,3,30,60,10,300,600,True,True,False,False" },
-            { "reasonable", "30,20,4,60,100,False,1.5,1.25,30,100,10,300,900,True,True,False,False," },
-            { "chaos", "0,100,5,100,0,False,3,2,60,100,50,600,1000,False,False,False,True," },
-            { "family", "50,100,8,80,100,False,1.5,2,30,60,10,300,600,False,True,True,False," },
+            { "default", "20,50,5,50,80,False,2,3,30,60,10,300,600,True,True,False,True," },
+            { "fun", "20,50,5,50,80,False,2,3,30,60,10,300,600,True,True,False,True" },
+            { "reasonable", "30,20,4,60,100,False,1.5,1.25,30,100,10,300,900,True,True,False,True," },
+            { "chaos", "0,100,5,100,0,False,3,2,60,100,50,600,1000,False,False,False,False," },
+            { "family", "50,100,8,80,100,False,1.5,2,30,60,10,300,600,False,True,True,True," },
             { "playground", "20,90,8,50,50,False,10,3,0,0,0,0,0,True,True,True,False," },
-            { "balanced", "30,20,3,50,100,False,1,1,30,100,10,300,900,True,True,False,False," },
+            { "balanced", "30,20,3,50,100,False,1,1,30,100,10,300,900,True,True,False,True," },
         };
         public List<int> npcBlacklist_BrokenAI = new()
         {
