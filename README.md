@@ -16,7 +16,7 @@
 
 ## Updates
 ### v1.0.3
-- Randomizer now creates output log that lists RNG seed, settings preset, and randomization details.
+- Randomizer now creates output logs that lists RNG seed, settings preset, and randomization details.
 - Fixed randomizer slightly modifying the AI of normal enemies that summons were copied from (exact effects are indeterminate and possibly nonexistent).
 - Under the hood Settings Presets changes. Any future updates that include new settings will now update out-of-date settings presets and notify the user.
 
