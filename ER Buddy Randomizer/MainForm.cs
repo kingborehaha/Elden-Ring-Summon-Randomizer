@@ -49,7 +49,6 @@ namespace ER_Buddy_Randomizer
             b_randomize.Enabled = false;
             b_restoreRegulation.Enabled = false;
             Text += GetVersion();
-            Directory.CreateDirectory("Randomizer Logs");
         }
 
 
