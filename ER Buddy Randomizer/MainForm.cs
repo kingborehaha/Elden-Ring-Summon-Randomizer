@@ -18,13 +18,13 @@ namespace ER_Buddy_Randomizer
         public Dictionary<string, string> presetList = new()
         {
             //list of settings presets
-            { "default", "20,50,5,50,80,False,2,3,30,60,10,300,600,True,True,False,True," },
-            { "fun", "20,50,5,50,80,False,2,3,30,60,10,300,600,True,True,False,True" },
-            { "reasonable", "30,20,4,60,100,False,1.5,1.25,30,100,10,300,900,True,True,False,True," },
-            { "chaos", "0,100,5,100,0,False,3,2,60,100,50,600,1000,False,False,False,False," },
-            { "family", "50,100,8,80,100,False,1.5,2,30,60,10,300,600,False,True,True,True," },
-            { "playground", "20,90,8,50,50,False,10,3,0,0,0,0,0,True,True,True,False," },
-            { "balanced", "30,20,3,50,100,False,1,1,30,100,10,300,900,True,True,False,True," },
+            { "default", "20,50,5,50,80,False,2,3,30,60,10,300,600,True,X,X,True," },
+            { "fun", "20,50,5,50,80,False,2,3,30,60,10,300,600,True,X,X,True" },
+            { "reasonable", "30,20,4,60,100,False,1.5,1.25,30,100,10,300,900,True,X,X,True," },
+            { "chaos", "0,100,5,100,0,False,3,2,60,100,50,600,1000,False,X,X,False," },
+            { "family", "50,100,8,80,100,False,1.5,2,30,60,10,300,600,False,X,X,True," },
+            { "playground", "20,90,8,50,50,False,10,3,0,0,0,0,0,True,X,X,False," },
+            { "balanced", "30,20,3,50,100,False,1,1,30,100,10,300,900,True,X,X,True," },
         };
         public List<int> npcBlacklist_BrokenAI = new()
         {
@@ -49,7 +49,14 @@ namespace ER_Buddy_Randomizer
             b_randomize.Enabled = false;
             b_restoreRegulation.Enabled = false;
             string version = Application.ProductVersion;
-            Text = Text + string.Format(" {0}", version);
+            Text += string.Format(" {0}", version);
+            
+            combo_FollowBehavior.DropDownStyle = ComboBoxStyle.DropDownList;
+            combo_FollowBehavior.SelectedIndex = 0;
+
+            combo_LargeFollowBehavior.DropDownStyle = ComboBoxStyle.DropDownList;
+            combo_LargeFollowBehavior.SelectedIndex = 0;
+            //var i = combo_FollowBehavior.SelectedIndex;
         }
 
         private static PARAM.Row InsertParamRow(PARAM param, PARAM.Row row, int newID)
@@ -91,8 +98,8 @@ namespace ER_Buddy_Randomizer
             settingsList.Add(n_hpMax.Value.ToString());
             settingsList.Add(cb_bigBuddy.Checked.ToString());
             //1.1.0
-            settingsList.Add(cb_SmallFollow.Checked.ToString());
-            settingsList.Add(cb_BigFollow.Checked.ToString());
+            settingsList.Add(combo_FollowBehavior.SelectedIndex.ToString());
+            settingsList.Add(combo_LargeFollowBehavior.SelectedIndex.ToString());
             settingsList.Add(cb_TeamAttack.Checked.ToString());
 
 
@@ -170,8 +177,8 @@ namespace ER_Buddy_Randomizer
                 n_hpMax.Value = decimal.Parse(settingsList[12]);
                 cb_bigBuddy.Checked = bool.Parse(settingsList[13]); //bool
                 //1.1.0
-                cb_SmallFollow.Checked = bool.Parse(settingsList[14]); //bool
-                cb_BigFollow.Checked = bool.Parse(settingsList[15]); //bool
+                combo_FollowBehavior.SelectedIndex = int.Parse(settingsList[14]);
+                combo_LargeFollowBehavior.SelectedIndex = int.Parse(settingsList[15]);
                 cb_TeamAttack.Checked = bool.Parse(settingsList[16]); //bool
 
                 if (showWarning)

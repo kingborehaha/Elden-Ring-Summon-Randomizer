@@ -56,8 +56,6 @@
             this.n_multipleChanceAdditional = new System.Windows.Forms.NumericUpDown();
             this.n_variantReuseChance = new System.Windows.Forms.NumericUpDown();
             this.cb_buddyReuse = new System.Windows.Forms.CheckBox();
-            this.cb_BigFollow = new System.Windows.Forms.CheckBox();
-            this.cb_SmallFollow = new System.Windows.Forms.CheckBox();
             this.cb_TeamAttack = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.max = new System.Windows.Forms.Label();
@@ -88,8 +86,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.combo_FollowBehavior = new System.Windows.Forms.ComboBox();
+            this.combo_LargeFollowBehavior = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.n_damageMult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_rngSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.n_fpMin)).BeginInit();
@@ -173,8 +173,8 @@
             // 
             // n_rngSeed
             // 
-            this.n_rngSeed.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.n_rngSeed.Location = new System.Drawing.Point(360, 415);
+            this.n_rngSeed.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.n_rngSeed.Location = new System.Drawing.Point(360, 408);
             this.n_rngSeed.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -200,13 +200,13 @@
             // 
             // label_randomseed
             // 
-            this.label_randomseed.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label_randomseed.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label_randomseed.AutoSize = true;
             this.label_randomseed.CausesValidation = false;
             this.label_randomseed.Enabled = false;
             this.label_randomseed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label_randomseed.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label_randomseed.Location = new System.Drawing.Point(360, 441);
+            this.label_randomseed.Location = new System.Drawing.Point(360, 434);
             this.label_randomseed.Name = "label_randomseed";
             this.label_randomseed.Size = new System.Drawing.Size(113, 15);
             this.label_randomseed.TabIndex = 35;
@@ -341,9 +341,9 @@
             // 
             // b_getSettings
             // 
-            this.b_getSettings.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.b_getSettings.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.b_getSettings.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_getSettings.Location = new System.Drawing.Point(308, 364);
+            this.b_getSettings.Location = new System.Drawing.Point(308, 357);
             this.b_getSettings.Name = "b_getSettings";
             this.b_getSettings.Size = new System.Drawing.Size(34, 23);
             this.b_getSettings.TabIndex = 58;
@@ -354,10 +354,10 @@
             // 
             // b_settingsSet
             // 
-            this.b_settingsSet.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.b_settingsSet.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.b_settingsSet.Enabled = false;
             this.b_settingsSet.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_settingsSet.Location = new System.Drawing.Point(473, 364);
+            this.b_settingsSet.Location = new System.Drawing.Point(473, 357);
             this.b_settingsSet.Name = "b_settingsSet";
             this.b_settingsSet.Size = new System.Drawing.Size(34, 23);
             this.b_settingsSet.TabIndex = 59;
@@ -368,9 +368,9 @@
             // 
             // b_newSeed
             // 
-            this.b_newSeed.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.b_newSeed.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.b_newSeed.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_newSeed.Location = new System.Drawing.Point(308, 415);
+            this.b_newSeed.Location = new System.Drawing.Point(308, 408);
             this.b_newSeed.Name = "b_newSeed";
             this.b_newSeed.Size = new System.Drawing.Size(45, 23);
             this.b_newSeed.TabIndex = 37;
@@ -383,7 +383,7 @@
             // 
             this.b_browse.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.b_browse.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_browse.Location = new System.Drawing.Point(371, 481);
+            this.b_browse.Location = new System.Drawing.Point(371, 467);
             this.b_browse.Name = "b_browse";
             this.b_browse.Size = new System.Drawing.Size(74, 24);
             this.b_browse.TabIndex = 60;
@@ -396,7 +396,7 @@
             // 
             this.b_randomize.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.b_randomize.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_randomize.Location = new System.Drawing.Point(451, 481);
+            this.b_randomize.Location = new System.Drawing.Point(451, 467);
             this.b_randomize.Name = "b_randomize";
             this.b_randomize.Size = new System.Drawing.Size(74, 24);
             this.b_randomize.TabIndex = 61;
@@ -409,7 +409,7 @@
             // 
             this.b_restoreRegulation.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.b_restoreRegulation.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.b_restoreRegulation.Location = new System.Drawing.Point(12, 481);
+            this.b_restoreRegulation.Location = new System.Drawing.Point(12, 467);
             this.b_restoreRegulation.Name = "b_restoreRegulation";
             this.b_restoreRegulation.Size = new System.Drawing.Size(103, 24);
             this.b_restoreRegulation.TabIndex = 62;
@@ -527,41 +527,13 @@
             this.cb_buddyReuse.UseVisualStyleBackColor = true;
             this.cb_buddyReuse.CheckedChanged += new System.EventHandler(this.cb_buddyReuse_CheckedChanged);
             // 
-            // cb_BigFollow
-            // 
-            this.cb_BigFollow.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cb_BigFollow.AutoSize = true;
-            this.cb_BigFollow.Location = new System.Drawing.Point(25, 364);
-            this.cb_BigFollow.Name = "cb_BigFollow";
-            this.cb_BigFollow.Size = new System.Drawing.Size(193, 19);
-            this.cb_BigFollow.TabIndex = 65;
-            this.cb_BigFollow.Text = "Large Buddies Follow the Player";
-            this.toolTip1.SetToolTip(this.cb_BigFollow, "Determines if large buddies will follow the player if they are far enough away.\r\n" +
-        "If false, buddies will wander around instead..");
-            this.cb_BigFollow.UseVisualStyleBackColor = true;
-            // 
-            // cb_SmallFollow
-            // 
-            this.cb_SmallFollow.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cb_SmallFollow.AutoSize = true;
-            this.cb_SmallFollow.Checked = true;
-            this.cb_SmallFollow.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_SmallFollow.Location = new System.Drawing.Point(25, 324);
-            this.cb_SmallFollow.Name = "cb_SmallFollow";
-            this.cb_SmallFollow.Size = new System.Drawing.Size(221, 19);
-            this.cb_SmallFollow.TabIndex = 66;
-            this.cb_SmallFollow.Text = "Non-Large Buddies Follow the Player";
-            this.toolTip1.SetToolTip(this.cb_SmallFollow, "Determines if non-large buddies will follow the player if they are far enough awa" +
-        "y.\r\nIf false, buddies will wander around instead.");
-            this.cb_SmallFollow.UseVisualStyleBackColor = true;
-            // 
             // cb_TeamAttack
             // 
             this.cb_TeamAttack.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cb_TeamAttack.AutoSize = true;
             this.cb_TeamAttack.Checked = true;
             this.cb_TeamAttack.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb_TeamAttack.Location = new System.Drawing.Point(25, 405);
+            this.cb_TeamAttack.Location = new System.Drawing.Point(41, 412);
             this.cb_TeamAttack.Name = "cb_TeamAttack";
             this.cb_TeamAttack.Size = new System.Drawing.Size(182, 19);
             this.cb_TeamAttack.TabIndex = 67;
@@ -570,7 +542,6 @@
         "e same target.\r\nImpact depends on the buddy and how many allies are attacking th" +
         "e same target.");
             this.cb_TeamAttack.UseVisualStyleBackColor = true;
-            this.cb_TeamAttack.Visible = false;
             // 
             // label16
             // 
@@ -604,8 +575,8 @@
             // 
             // tb_settings
             // 
-            this.tb_settings.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.tb_settings.Location = new System.Drawing.Point(349, 364);
+            this.tb_settings.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tb_settings.Location = new System.Drawing.Point(349, 357);
             this.tb_settings.Name = "tb_settings";
             this.tb_settings.PlaceholderText = "No Preset";
             this.tb_settings.Size = new System.Drawing.Size(118, 23);
@@ -660,7 +631,7 @@
             // t_console
             // 
             this.t_console.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.t_console.Location = new System.Drawing.Point(121, 481);
+            this.t_console.Location = new System.Drawing.Point(121, 467);
             this.t_console.Name = "t_console";
             this.t_console.ReadOnly = true;
             this.t_console.Size = new System.Drawing.Size(244, 23);
@@ -670,10 +641,10 @@
             // 
             // label11
             // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(349, 313);
+            this.label11.Location = new System.Drawing.Point(349, 306);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(118, 25);
             this.label11.TabIndex = 25;
@@ -797,10 +768,10 @@
             // 
             // label17
             // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label17.Location = new System.Drawing.Point(374, 397);
+            this.label17.Location = new System.Drawing.Point(374, 390);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(59, 15);
             this.label17.TabIndex = 52;
@@ -808,10 +779,10 @@
             // 
             // label20
             // 
-            this.label20.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label20.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label20.Location = new System.Drawing.Point(360, 346);
+            this.label20.Location = new System.Drawing.Point(360, 339);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(84, 15);
             this.label20.TabIndex = 56;
@@ -858,46 +829,66 @@
             this.label12.TabIndex = 64;
             this.label12.Text = "Buddy Behavior";
             // 
-            // checkBox1
+            // combo_FollowBehavior
             // 
-            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(45, 380);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(144, 19);
-            this.checkBox1.TabIndex = 69;
-            this.checkBox1.Text = "Randomize Per-Buddy";
-            this.toolTip1.SetToolTip(this.checkBox1, "Determines if Large Buddy follow behavior will be randomized per-buddy");
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.combo_FollowBehavior.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.combo_FollowBehavior.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.combo_FollowBehavior.FormattingEnabled = true;
+            this.combo_FollowBehavior.Items.AddRange(new object[] {
+            "Follow the player",
+            "Wander around",
+            "Randomize per-buddy"});
+            this.combo_FollowBehavior.Location = new System.Drawing.Point(58, 340);
+            this.combo_FollowBehavior.Name = "combo_FollowBehavior";
+            this.combo_FollowBehavior.Size = new System.Drawing.Size(138, 21);
+            this.combo_FollowBehavior.TabIndex = 71;
             // 
-            // checkBox2
+            // combo_LargeFollowBehavior
             // 
-            this.checkBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Enabled = false;
-            this.checkBox2.Location = new System.Drawing.Point(45, 341);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(144, 19);
-            this.checkBox2.TabIndex = 70;
-            this.checkBox2.Text = "Randomize Per-Buddy";
-            this.toolTip1.SetToolTip(this.checkBox2, "Randomize");
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.combo_LargeFollowBehavior.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.combo_LargeFollowBehavior.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.combo_LargeFollowBehavior.FormattingEnabled = true;
+            this.combo_LargeFollowBehavior.Items.AddRange(new object[] {
+            "Follow the player",
+            "Wander around",
+            "Randomize per-buddy"});
+            this.combo_LargeFollowBehavior.Location = new System.Drawing.Point(58, 382);
+            this.combo_LargeFollowBehavior.Name = "combo_LargeFollowBehavior";
+            this.combo_LargeFollowBehavior.Size = new System.Drawing.Size(138, 21);
+            this.combo_LargeFollowBehavior.TabIndex = 72;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label13.Location = new System.Drawing.Point(41, 322);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(91, 15);
+            this.label13.TabIndex = 73;
+            this.label13.Text = "Follow Behavior";
+            // 
+            // label21
+            // 
+            this.label21.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label21.Location = new System.Drawing.Point(41, 364);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(160, 15);
+            this.label21.TabIndex = 74;
+            this.label21.Text = "Large Buddy Follow Behavior";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 517);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.ClientSize = new System.Drawing.Size(537, 503);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.combo_LargeFollowBehavior);
+            this.Controls.Add(this.combo_FollowBehavior);
             this.Controls.Add(this.cb_TeamAttack);
-            this.Controls.Add(this.cb_SmallFollow);
-            this.Controls.Add(this.cb_BigFollow);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cb_bigBuddy);
             this.Controls.Add(this.b_restoreRegulation);
@@ -1027,10 +1018,10 @@
         private CheckBox cb_buddyReuse;
         private ToolStripMenuItem balancedToolStripMenuItem;
         private Label label12;
-        private CheckBox cb_BigFollow;
-        private CheckBox cb_SmallFollow;
         private CheckBox cb_TeamAttack;
-        private CheckBox checkBox1;
-        private CheckBox checkBox2;
+        private ComboBox combo_FollowBehavior;
+        private ComboBox combo_LargeFollowBehavior;
+        private Label label13;
+        private Label label21;
     }
 }
