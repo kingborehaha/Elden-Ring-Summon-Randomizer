@@ -15,6 +15,11 @@
 - Run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
+### v1.0.3
+- Randomizer now creates output log that lists RNG seed, settings preset, and randomization details.
+- Fixed randomizer slightly modifying the AI of normal enemies that summons were copied from (exact effects are indeterminate and possibly nonexistent).
+- Under the hood Settings Presets changes. Any future updates that include new settings will now update out-of-date settings presets and notify the user.
+
 ### v1.0.2
 - Capped summon map collision radii (Prevents spawning in the ground. Incidentally lets them fit in small areas)
 - Adjusted spawn offsets.
