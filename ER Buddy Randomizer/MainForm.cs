@@ -55,7 +55,7 @@ namespace ER_Buddy_Randomizer
 
         private static string GetTime()
         {
-            string time = DateTime.UtcNow.ToString("MM.dd.yyyy");//  HH-mm-ss
+            string time = DateTime.Now.ToString("MM.dd.yyyy HH-mm-ss");
             return time;
         }
 
