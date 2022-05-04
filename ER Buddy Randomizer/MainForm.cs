@@ -48,9 +48,24 @@ namespace ER_Buddy_Randomizer
         {
             b_randomize.Enabled = false;
             b_restoreRegulation.Enabled = false;
-            string version = Application.ProductVersion;
-            Text = Text + string.Format(" {0}", version);
+            Text += GetVersion();
+            Directory.CreateDirectory("Randomizer Logs");
         }
+
+
+        private static string GetTime()
+        {
+            string time = DateTime.UtcNow.ToString("MM.dd.yyyy");//  HH-mm-ss
+            return time;
+        }
+
+        private static string GetVersion()
+        {
+            string version = Application.ProductVersion;
+            version = string.Format(" {0}", version);
+            return version;
+        }
+
 
         private static PARAM.Row InsertParamRow(PARAM param, PARAM.Row row, int newID)
         {
@@ -228,6 +243,16 @@ namespace ER_Buddy_Randomizer
             Random rng = new(rngSeed);
 
             SettingsToString();//update settings string
+
+            List<string> outputLog = new();
+            string time = GetTime();
+
+            outputLog.Add("RANDOMIZER LOG" + GetVersion() + " " + time);
+            outputLog.Add("RNG SEED: "+rngSeed.ToString());
+            outputLog.Add("SETTINGS: "+tb_settings.Text);
+            outputLog.Add("");
+            outputLog.Add("## Buddies ##");
+
 
             #region Cleanup & Randomizer Logic 1
             //Clean buddyParam BuddyParam entry groundwork
@@ -440,6 +465,15 @@ namespace ER_Buddy_Randomizer
 
                 PARAM.Row newNpcRow = InsertParamRow(npcParam, npcParam[npcID], newNpcID);
 
+                int newNpcThinkID = npcThinkID;
+                do
+                {
+                    newNpcThinkID++; //increment until ID is free
+                }
+                while (npcThinkParam[newNpcThinkID] != null);
+
+                PARAM.Row newNpcThinkRow = InsertParamRow(npcThinkParam, npcThinkParam[npcThinkID], newNpcThinkID);
+
                 /*
                 UInt32 baseHP = (UInt32)newNpcRow["hp"].Value;
                 float maxHPMod = (float)n_hpMult.Value;
@@ -492,7 +526,7 @@ namespace ER_Buddy_Randomizer
                 #region BuddyParam
                 buddyParamRow["npcParamId"].Value = newNpcID;
 
-                buddyParamRow["npcThinkParamId"].Value = npcThinkID;
+                buddyParamRow["npcThinkParamId"].Value = newNpcThinkID;
                 buddyParamRow["npcPlayerInitParamId"].Value = -1; //some c0000 thing i think
 
                 buddyParamRow["npcParamId_ridden"].Value = -1;
@@ -536,9 +570,14 @@ namespace ER_Buddy_Randomizer
                 #endregion
 
                 #region npcThinkParam
-                npcThinkParam[npcThinkID]["isBuddyAI"].Value = true;
-                npcThinkParam[npcThinkID]["TeamAttackEffectivity"].Value = (byte)0; //vaguely want this to potentially be non-zero in consideration of multi buddies. hmm
+                newNpcThinkRow["isBuddyAI"].Value = true;
+                //newNpcThinkRow["TeamAttackEffectivity"].Value = (byte)0;
+                    //Summon AI now always behaves at 100 % aggressiveness when they are not the primary attacker (in situations where multiple allies are attacking the same enemy).
                 #endregion
+
+                string logSpacer = " [] ";
+                outputLog.Add("Buddy " + buddyParamRow.ID + logSpacer + "NPC " + newNpcID + logSpacer + "THINK " + newNpcThinkID);
+
             }
 
             #region SpEffectParam
@@ -606,6 +645,8 @@ namespace ER_Buddy_Randomizer
             }
 
             SFUtil.EncryptERRegulation(regulationPath, paramBND); //encrypt and write param regulation
+
+            File.WriteAllLines("Randomizer Logs\\"+"Output" + GetVersion() +" "+ time +".txt", outputLog);
 
         }
 

@@ -16,7 +16,8 @@
 
 ## Updates
 ### v1.0.3
-- Summon AI now always behaves at 100% aggressiveness when they are not the primary attacker (in situations where multiple allies are attacking the same enemy).
+- Randomizer now creates output log that lists RNG seed, settings preset, and randomizer details.
+- Fixed randomizer slightly modifying the AI of normal enemies that summons were copied from (exact effects are indeterminate and possibly nonexistent).
 - Under the hood Settings Presets changes. Any future updates that include new settings will now update out-of-date settings presets and notify the user.
 
 ### v1.0.2
