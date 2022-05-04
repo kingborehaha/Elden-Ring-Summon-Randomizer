@@ -575,7 +575,7 @@ namespace ER_Buddy_Randomizer
                 #endregion
 
                 string logSpacer = " [] ";
-                outputLog.Add("Buddy " + buddyParamRow.ID + logSpacer + "NPC " + newNpcID + logSpacer + "THINK " + newNpcThinkID);
+                outputLog.Add("Buddy " + buddyParamRow.ID + logSpacer + "NPC " + npcID + logSpacer + "THINK " + npcThinkID);
 
             }
 
