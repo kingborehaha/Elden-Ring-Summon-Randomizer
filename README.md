@@ -15,6 +15,9 @@
 - Run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
+### v1.0.4
+- Updated to work with Elden Ring v1.08
+
 ### v1.0.3
 - Randomizer now creates output logs that lists RNG seed, settings preset, and randomization details.
 - Fixed randomizer slightly modifying the AI of normal enemies that summons were copied from (exact effects are indeterminate and possibly nonexistent).
