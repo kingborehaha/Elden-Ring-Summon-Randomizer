@@ -509,7 +509,7 @@ namespace ER_Buddy_Randomizer
                         newNpcRow["spEffectID" + iEffect].Value = -1;
                     }
 
-                    if (effectID != -1 && iBuddy < buddyEffects.Length)
+                    if (effectID <= 0 && iBuddy < buddyEffects.Length)
                     {
                         //slot is empty. insert buddy effects
                         newNpcRow["spEffectID" + iEffect].Value = buddyEffects[iBuddy];
