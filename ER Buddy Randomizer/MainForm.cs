@@ -199,7 +199,7 @@ namespace ER_Buddy_Randomizer
             UpdateConsole("Loading ParamDefs");
 
             var paramdefs = new List<PARAMDEF>();
-            foreach (string path in Directory.GetFiles("Paramdex", "*.xml"))
+            foreach (string path in Directory.GetFiles($@"{Directory.GetCurrentDirectory()}\Paramdex", "*.xml"))
             {
                 var paramdef = PARAMDEF.XmlDeserialize(path);
                 paramdefs.Add(paramdef);
@@ -645,7 +645,7 @@ namespace ER_Buddy_Randomizer
 
             SFUtil.EncryptERRegulation(regulationPath, paramBND); //encrypt and write param regulation
 
-            File.WriteAllLines("Randomizer Logs\\"+"Output" + GetVersion() +" "+ time +".txt", outputLog);
+            File.WriteAllLines($@"{Directory.GetCurrentDirectory()}\Randomizer Logs\Output{GetVersion()} {time}.txt", outputLog);
 
         }
 
@@ -674,7 +674,7 @@ namespace ER_Buddy_Randomizer
 
                 UpdateConsole("Selected Regulation.bin");
 
-                backupFile = directory + "/regulation.bin.backup"; //place backup next to regulation.bin
+                backupFile = directory + "\\regulation.bin.backup"; //place backup next to regulation.bin
 
                 if (File.Exists(backupFile))
                     b_restoreRegulation.Enabled = true;

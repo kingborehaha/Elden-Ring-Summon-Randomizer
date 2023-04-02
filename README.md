@@ -15,6 +15,10 @@
 - Run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
+### v1.0.5
+- Fixed empty SpEffect ID logic. This issue usually caused enemies to have modified stagger/poise behvaior, but it could also affect other misc things.
+- Fixed program not working properly when launched from the start menu.
+
 ### v1.0.4
 - Updated to work with Elden Ring v1.08
 
