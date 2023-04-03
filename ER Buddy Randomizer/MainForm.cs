@@ -38,7 +38,6 @@ namespace ER_Buddy_Randomizer
 
         };
         
-
         public MainForm()
         {
             InitializeComponent();
@@ -50,7 +49,6 @@ namespace ER_Buddy_Randomizer
             b_restoreRegulation.Enabled = false;
             Text += GetVersion();
         }
-
 
         private static string GetTime()
         {
@@ -64,7 +62,6 @@ namespace ER_Buddy_Randomizer
             version = string.Format(" {0}", version);
             return version;
         }
-
 
         private static PARAM.Row InsertParamRow(PARAM param, PARAM.Row row, int newID)
         {
