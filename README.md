@@ -16,7 +16,7 @@
 
 ## Updates
 ### v1.0.5
-- Fixed empty SpEffect ID logic. This issue usually caused enemies to have modified stagger/poise behvaior, but it could also affect other misc things.
+- Fixed empty SpEffect ID logic. This issue sometimes caused a "Couldn't find enough empty effect slots" error when it didn't need to.
 - Fixed program not working properly when launched from the start menu.
 
 ### v1.0.4
