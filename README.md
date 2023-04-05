@@ -16,7 +16,8 @@
 
 ## Updates
 ### v1.0.5
-- Fixed empty SpEffect ID logic. This issue sometimes caused a "Couldn't find enough empty effect slots" error when it didn't need to.
+- Fixed regulation.bin backup not being restored when clicking the randomize button and being prompted to restore backups.
+- Fixed empty SpEffect ID logic. This issue rarely triggered a "Couldn't find enough empty effect slots" error when it didn't need to.
 - Fixed program not working properly when launched from the start menu.
 
 ### v1.0.4

@@ -696,7 +696,7 @@ namespace ER_Buddy_Randomizer
                         + " \nYou may be trying to randomize an already randomized Regulation.bin, which will cause issues. It's recommended you restore the backup first."
                         + " \n\nDelete Regulation.bin and restore backup before proceeding?"
                         , "Confirm Randomization", MessageBoxButtons.YesNoCancel);
-                    if (result == DialogResult.OK)
+                    if (result == DialogResult.Yes)
                     {
                         Restore_Regulation();
                     }
@@ -704,7 +704,11 @@ namespace ER_Buddy_Randomizer
                     {
                         return;
                     }
-             }
+                    else if (result == DialogResult.No)
+                    {
+                        // No action.
+                    }
+            }
 
             CreateBuddy(); //Do everything
 
@@ -785,7 +789,7 @@ namespace ER_Buddy_Randomizer
             string regulationPath = openFileDialog1.FileName;
             
             FileSystem.DeleteFile(regulationPath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-            File.Move(backupFile, regulationPath, false);
+            File.Move(backupFile, regulationPath, true);
             UpdateConsole("Backup Restored");
             b_restoreRegulation.Enabled = false;
             
