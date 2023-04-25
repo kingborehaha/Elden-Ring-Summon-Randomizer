@@ -37,7 +37,7 @@ namespace ER_Buddy_Randomizer
             //astel?
 
         };
-        
+
         public MainForm()
         {
             InitializeComponent();
@@ -105,7 +105,7 @@ namespace ER_Buddy_Randomizer
             string settingsString = "";
             foreach (string str in settingsList)
             {
-                settingsString = settingsString+str + ",";
+                settingsString = settingsString + str + ",";
             }
 
             tb_settings.Text = settingsString;
@@ -119,14 +119,14 @@ namespace ER_Buddy_Randomizer
 
             int lastEntry = 13; //way to make sure i'm not too stupid
 
-            List<string> settingsList = tb_settings.Text.Split(",",StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> settingsList = tb_settings.Text.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
             List<string> defaultSettings = presetList["default"].Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
 
             bool showWarning = false;
             if (settingsList.Count != defaultSettings.Count)
                 showWarning = true;
 
-            
+
             //get current settings to update out-of-date settings string (if required)
             for (var i = settingsList.Count; i < defaultSettings.Count; i++)
             {
@@ -244,8 +244,8 @@ namespace ER_Buddy_Randomizer
             string time = GetTime();
 
             outputLog.Add("RANDOMIZER LOG" + GetVersion() + " " + time);
-            outputLog.Add("RNG SEED: "+rngSeed.ToString());
-            outputLog.Add("SETTINGS: "+tb_settings.Text);
+            outputLog.Add("RNG SEED: " + rngSeed.ToString());
+            outputLog.Add("SETTINGS: " + tb_settings.Text);
             outputLog.Add("");
             outputLog.Add("## Buddies ##");
 
@@ -305,7 +305,7 @@ namespace ER_Buddy_Randomizer
                     continue;
                 }
                 */
-                
+
                 if ((Int32)npcParam[npcID]["behaviorVariationId"].Value > 10000 //not a c0000 NPC
                 //&& npcID < 1000000000 //not a spirit ash npc
                     && npcID < 89000000) //not a cutscene NPC (probably) (this disallows some c0000's fyi. maybe just non-combat ones though.)
@@ -568,7 +568,7 @@ namespace ER_Buddy_Randomizer
                 #region npcThinkParam
                 newNpcThinkRow["isBuddyAI"].Value = true;
                 //newNpcThinkRow["TeamAttackEffectivity"].Value = (byte)0;
-                    //Summon AI now always behaves at 100 % aggressiveness when they are not the primary attacker (in situations where multiple allies are attacking the same enemy).
+                //Summon AI now always behaves at 100 % aggressiveness when they are not the primary attacker (in situations where multiple allies are attacking the same enemy).
                 #endregion
 
                 string logSpacer = " [] ";
@@ -688,26 +688,26 @@ namespace ER_Buddy_Randomizer
         {
             //start randomizer
 
-             if (File.Exists(backupFile))
-                {
-                    //User wants to randomize a regulation that has a backup file next to it
+            if (File.Exists(backupFile))
+            {
+                //User wants to randomize a regulation that has a backup file next to it
 
-                    DialogResult result = MessageBox.Show("Warning: Backup Regulation.bin already exists."
-                        + " \nYou may be trying to randomize an already randomized Regulation.bin, which will cause issues. It's recommended you restore the backup first."
-                        + " \n\nDelete Regulation.bin and restore backup before proceeding?"
-                        , "Confirm Randomization", MessageBoxButtons.YesNoCancel);
-                    if (result == DialogResult.Yes)
-                    {
-                        Restore_Regulation();
-                    }
-                    else if (result == DialogResult.Cancel)
-                    {
-                        return;
-                    }
-                    else if (result == DialogResult.No)
-                    {
-                        // No action.
-                    }
+                DialogResult result = MessageBox.Show("Warning: Backup Regulation.bin already exists."
+                    + " \nYou may be trying to randomize an already randomized Regulation.bin, which will cause issues. It's recommended you restore the backup first."
+                    + " \n\nDelete Regulation.bin and restore backup before proceeding?"
+                    , "Confirm Randomization", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    Restore_Regulation();
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+                else if (result == DialogResult.No)
+                {
+                    // No action.
+                }
             }
 
             CreateBuddy(); //Do everything
@@ -716,7 +716,7 @@ namespace ER_Buddy_Randomizer
 
             UpdateConsole("Finished!");
             System.Media.SystemSounds.Exclamation.Play(); //make noise
-            MessageBox.Show("All done!","Randomization Finished",MessageBoxButtons.OK);
+            MessageBox.Show("All done!", "Randomization Finished", MessageBoxButtons.OK);
 
         }
 
@@ -740,7 +740,7 @@ namespace ER_Buddy_Randomizer
         private void cb_buddyReuse_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_buddyReuse.Checked)
-                n_variantReuseChance.Enabled = false;  
+                n_variantReuseChance.Enabled = false;
             else
                 n_variantReuseChance.Enabled = true;
         }
@@ -787,12 +787,12 @@ namespace ER_Buddy_Randomizer
         private void Restore_Regulation()
         {
             string regulationPath = openFileDialog1.FileName;
-            
+
             FileSystem.DeleteFile(regulationPath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
             File.Move(backupFile, regulationPath, true);
             UpdateConsole("Backup Restored");
             b_restoreRegulation.Enabled = false;
-            
+
         }
 
         private void b_restoreRegulation_Click(object sender, EventArgs e)
