@@ -15,6 +15,11 @@
 - Run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
+### v1.0.6
+- Fixed the multi-buddy setting going higher than the game actually supported. It is now stops at at 9, aka 10 summons total.
+- Fixed Mimic Tear causing crashes in some circumstances.
+- Mimic Tears now always summon player clones player in (various amounts).
+
 ### v1.0.5
 - Fixed regulation.bin backup not being restored when clicking the randomize button and being prompted to restore backups.
 - Fixed empty SpEffect ID logic. This issue rarely triggered a "Couldn't find enough empty effect slots" error when it didn't need to.
