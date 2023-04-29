@@ -356,12 +356,12 @@
             // 
             n_multipleMax.Anchor = AnchorStyles.Top;
             n_multipleMax.Location = new Point(165, 182);
-            n_multipleMax.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            n_multipleMax.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
             n_multipleMax.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             n_multipleMax.Name = "n_multipleMax";
             n_multipleMax.Size = new Size(50, 23);
             n_multipleMax.TabIndex = 3;
-            toolTip1.SetToolTip(n_multipleMax, "Maximum number of buddies a summon can generate.\r\nWarning: High values will cause issues, and very high values will cause very nasty issues!");
+            toolTip1.SetToolTip(n_multipleMax, "Maximum number of buddies a summon can generate, up to 10 summons at once.\r\nWarning: high values may cause issues.");
             n_multipleMax.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
             // n_multipleChanceBase
@@ -583,42 +583,42 @@
             // preset_fun
             // 
             preset_fun.Name = "preset_fun";
-            preset_fun.Size = new Size(180, 22);
+            preset_fun.Size = new Size(135, 22);
             preset_fun.Text = "Fun";
             preset_fun.Click += preset_fun_Click;
             // 
             // preset_reasonable
             // 
             preset_reasonable.Name = "preset_reasonable";
-            preset_reasonable.Size = new Size(180, 22);
+            preset_reasonable.Size = new Size(135, 22);
             preset_reasonable.Text = "Reasonable";
             preset_reasonable.Click += preset_reasonable_Click;
             // 
             // preset_CHAOS
             // 
             preset_CHAOS.Name = "preset_CHAOS";
-            preset_CHAOS.Size = new Size(180, 22);
+            preset_CHAOS.Size = new Size(135, 22);
             preset_CHAOS.Text = "CHAOS";
             preset_CHAOS.Click += preset_CHAOS_Click;
             // 
             // preset_family
             // 
             preset_family.Name = "preset_family";
-            preset_family.Size = new Size(180, 22);
+            preset_family.Size = new Size(135, 22);
             preset_family.Text = "Family";
             preset_family.Click += preset_family_Click;
             // 
             // preset_playground
             // 
             preset_playground.Name = "preset_playground";
-            preset_playground.Size = new Size(180, 22);
+            preset_playground.Size = new Size(135, 22);
             preset_playground.Text = "Playground";
             preset_playground.Click += preset_playground_Click;
             // 
             // balancedToolStripMenuItem
             // 
             balancedToolStripMenuItem.Name = "balancedToolStripMenuItem";
-            balancedToolStripMenuItem.Size = new Size(180, 22);
+            balancedToolStripMenuItem.Size = new Size(135, 22);
             balancedToolStripMenuItem.Text = "\"Balanced\"";
             balancedToolStripMenuItem.Click += balancedToolStripMenuItem_Click;
             // 

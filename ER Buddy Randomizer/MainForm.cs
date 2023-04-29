@@ -166,12 +166,13 @@ namespace ER_Buddy_Randomizer
             }
             catch
             {
-                MessageBox.Show("Settings Preset is invalid.\n\nMake sure you properly copy/pasted the entire string.", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Settings Preset is invalid.\n\nMake sure you copy & pasted everything.", "Error", MessageBoxButtons.OK);
                 return;
-                //SettingsToString();
             }
             return;
         }
+
+        private string logSpacer = " [] ";
 
         private void CreateBuddy()
         {
@@ -357,7 +358,6 @@ namespace ER_Buddy_Randomizer
                 //decide which NpcParam entries to use
                 int rng_index = rng.Next(0, goodNpcIDs.Count); //pick next random entry
 
-
                 //check if chosen NPC is acceptable
                 int timeout = 0;
                 for (var iLogic = 0; iLogic < buddyParam.Rows.Count; iLogic++)
@@ -426,12 +426,12 @@ namespace ER_Buddy_Randomizer
                     }
                 }
 
+                int buddyBaseID = buddyParamRow.ID - buddyParamRow.ID % 100;
                 bool isMultiSummon = buddyParamRow.ID - buddyParam.Rows[i - 1].ID == 1;
                 if (isMultiSummon
                 && rng.Next(1, 100) <= n_multipleDupeChance.Value) //should this be a dupe summon
                 {
                     //this is multi-summon, and will be a dupe of the first entry
-                    int buddyBaseID = buddyParamRow.ID - buddyParamRow.ID % 100;
                     npcID = (Int32)buddyParam[buddyBaseID]["npcParamId"].Value;
                     npcThinkID = (Int32)buddyParam[buddyBaseID]["npcThinkParamId"].Value;
                 }
@@ -520,60 +520,78 @@ namespace ER_Buddy_Randomizer
                 #endregion
 
                 #region BuddyParam
-                buddyParamRow["npcParamId"].Value = newNpcID;
-
-                buddyParamRow["npcThinkParamId"].Value = newNpcThinkID;
-                buddyParamRow["npcPlayerInitParamId"].Value = -1; //some c0000 thing i think
-
-                buddyParamRow["npcParamId_ridden"].Value = -1;
-                buddyParamRow["npcThinkParamId_ridden"].Value = -1;
-                buddyParamRow["generateAnimId"].Value = -1;
-                buddyParamRow["appearOnAroundSekihi"].Value = (byte)0; //always summon around player
-                buddyParamRow["pcFollowType"].Value = (byte)0; //0 = follow player around, 1 = don't?, 2 = ?
-
-
-
-                //spawn offsets
-                //this is all pretty dumb and I hate it
-                /* //Horizontal offset 2 (I was right about being wrong. There isn't a height offset)
-                float buddyHeight = (float)newNpcRow["hitHeight"].Value;
-                buddyParamRow["z_offset"].Value = buddyHeight * buddyHeightMult * -1; //horizontal offset 2
-                */
-                float xOffset = 0;
-                float buddyWidth = (float)newNpcRow["chrHitRadius"].Value;// * (float).75;
-                if (isMultiSummon)
+                if (buddyBaseID == 20700000)
                 {
-                    float xOffsetIncrement = buddyWidth;
-
-                    //this part doesn't actually make sense, but whatever.
-                    xOffset = (float)buddyParam.Rows[i - 1]["x_offset"].Value;
-                    if (xOffset >= 0)
-                        xOffset += xOffsetIncrement; //increment
+                    // Do not modify buddyParam fields for mimic tear, else the game will crash and otherwise cause issues.
+                    if (buddyParamRow.ID == 20700000)
+                    {
+                        // Initial blob (this isn't strictly necessary, but the first buddy for mimic tear doesn't really work so why not)
+                        buddyParamRow["npcParamId"].Value = 133201000;
+                        buddyParamRow["npcThinkParamId"].Value = 133200000;
+                    }
                     else
-                        xOffset -= xOffsetIncrement; //decrement
-                    xOffset *= -1; //invert
-
+                    {
+                        // c0000's
+                        buddyParamRow["npcParamId"].Value = 100000010;
+                        buddyParamRow["npcThinkParamId"].Value = 100000010;
+                        buddyParamRow["npcPlayerInitParamId"].Value = 26050;
+                        buddyParamRow["generateAnimId"].Value = 60500;
+                        buddyParamRow["pcFollowType"].Value = 0;
+                    }
                 }
-                buddyParamRow["x_offset"].Value = xOffset; //horizontal offset 1
-                buddyParamRow["z_offset"].Value = buddyWidth * -1; //horizontal offset 2
-
-
-                //special effect scalers
-                for (var iLv = 0; iLv <= 10; iLv++)
+                else
                 {
-                    buddyParamRow["dopingSpEffect_lv" + iLv].Value = 290000 + iLv; //buddy reinforcement spEfects
+                    buddyParamRow["npcParamId"].Value = newNpcID;
+
+                    buddyParamRow["npcThinkParamId"].Value = newNpcThinkID;
+                    buddyParamRow["npcPlayerInitParamId"].Value = -1; //some c0000 thing i think
+
+                    buddyParamRow["npcParamId_ridden"].Value = -1;
+                    buddyParamRow["npcThinkParamId_ridden"].Value = -1;
+                    buddyParamRow["generateAnimId"].Value = -1;
+                    buddyParamRow["appearOnAroundSekihi"].Value = (byte)0; //always summon around player
+                    buddyParamRow["pcFollowType"].Value = (byte)0; //0 = follow player around, 1 = don't?, 2 = ?
+
+
+                    //spawn offsets
+                    //this is all pretty dumb and I hate it
+                    /* //Horizontal offset 2 (I was right about being wrong. There isn't a height offset)
+                    float buddyHeight = (float)newNpcRow["hitHeight"].Value;
+                    buddyParamRow["z_offset"].Value = buddyHeight * buddyHeightMult * -1; //horizontal offset 2
+                    */
+                    float xOffset = 0;
+                    float buddyWidth = (float)newNpcRow["chrHitRadius"].Value;// * (float).75;
+                    if (isMultiSummon)
+                    {
+                        float xOffsetIncrement = buddyWidth;
+
+                        //this part doesn't actually make sense, but whatever.
+                        xOffset = (float)buddyParam.Rows[i - 1]["x_offset"].Value;
+                        if (xOffset >= 0)
+                            xOffset += xOffsetIncrement; //increment
+                        else
+                            xOffset -= xOffsetIncrement; //decrement
+                        xOffset *= -1; //invert
+
+                    }
+                    buddyParamRow["x_offset"].Value = xOffset; //horizontal offset 1
+                    buddyParamRow["z_offset"].Value = buddyWidth * -1; //horizontal offset 2
+
+                    //special effect scalers
+                    for (var iLv = 0; iLv <= 10; iLv++)
+                    {
+                        buddyParamRow["dopingSpEffect_lv" + iLv].Value = 290000 + iLv; //buddy reinforcement spEfects
+                    }
+                    #endregion
+
+                    #region npcThinkParam
+                    newNpcThinkRow["isBuddyAI"].Value = true;
+                    //newNpcThinkRow["TeamAttackEffectivity"].Value = (byte)0;
+                    //Summon AI now always behaves at 100 % aggressiveness when they are not the primary attacker (in situations where multiple allies are attacking the same enemy).
+                    #endregion
                 }
-                #endregion
 
-                #region npcThinkParam
-                newNpcThinkRow["isBuddyAI"].Value = true;
-                //newNpcThinkRow["TeamAttackEffectivity"].Value = (byte)0;
-                //Summon AI now always behaves at 100 % aggressiveness when they are not the primary attacker (in situations where multiple allies are attacking the same enemy).
-                #endregion
-
-                string logSpacer = " [] ";
                 outputLog.Add("Buddy " + buddyParamRow.ID + logSpacer + "NPC " + npcID + logSpacer + "THINK " + npcThinkID);
-
             }
 
             #region SpEffectParam
