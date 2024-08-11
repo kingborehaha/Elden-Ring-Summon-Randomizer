@@ -3,6 +3,7 @@ using Microsoft.VisualBasic.FileIO;
 
 /*
  TODO (someday)
+ * Implement spirit battler resource list
  * Figure out and handle buddy param "pay attention to player targeting".
  * Vague balancing: establish multiple sets of spEffects with diminished mults for multi-buddies
 */
@@ -31,13 +32,11 @@ namespace ER_Buddy_Randomizer
             //list of npc IDs to exclude since they just don't work at all
             //unimplemented
             0,
-            //ancestor with staff?
-            //bloodhound? (teleporting issue?)
-            //radahn? (only one phase or another?)
-            //astel?
+            500000000,
+            500000006
 
         };
-        
+
         public MainForm()
         {
             InitializeComponent();
@@ -105,7 +104,7 @@ namespace ER_Buddy_Randomizer
             string settingsString = "";
             foreach (string str in settingsList)
             {
-                settingsString = settingsString+str + ",";
+                settingsString = settingsString + str + ",";
             }
 
             tb_settings.Text = settingsString;
@@ -119,14 +118,14 @@ namespace ER_Buddy_Randomizer
 
             int lastEntry = 13; //way to make sure i'm not too stupid
 
-            List<string> settingsList = tb_settings.Text.Split(",",StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> settingsList = tb_settings.Text.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
             List<string> defaultSettings = presetList["default"].Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
 
             bool showWarning = false;
             if (settingsList.Count != defaultSettings.Count)
                 showWarning = true;
 
-            
+
             //get current settings to update out-of-date settings string (if required)
             for (var i = settingsList.Count; i < defaultSettings.Count; i++)
             {
@@ -166,14 +165,15 @@ namespace ER_Buddy_Randomizer
             }
             catch
             {
-                MessageBox.Show("Settings Preset is invalid.\n\nMake sure you properly copy/pasted the entire string.", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Settings Preset is invalid.\n\nMake sure you copy & pasted everything.", "Error", MessageBoxButtons.OK);
                 return;
-                //SettingsToString();
             }
             return;
         }
 
-        private void CreateBuddy()
+        private string logSpacer = " [] ";
+
+        private bool CreateBuddy()
         {
 
             #region Load Parameters from Regulation.bin
@@ -244,8 +244,8 @@ namespace ER_Buddy_Randomizer
             string time = GetTime();
 
             outputLog.Add("RANDOMIZER LOG" + GetVersion() + " " + time);
-            outputLog.Add("RNG SEED: "+rngSeed.ToString());
-            outputLog.Add("SETTINGS: "+tb_settings.Text);
+            outputLog.Add("RNG SEED: " + rngSeed.ToString());
+            outputLog.Add("SETTINGS: " + tb_settings.Text);
             outputLog.Add("");
             outputLog.Add("## Buddies ##");
 
@@ -305,7 +305,7 @@ namespace ER_Buddy_Randomizer
                     continue;
                 }
                 */
-                
+
                 if ((Int32)npcParam[npcID]["behaviorVariationId"].Value > 10000 //not a c0000 NPC
                 //&& npcID < 1000000000 //not a spirit ash npc
                     && npcID < 89000000) //not a cutscene NPC (probably) (this disallows some c0000's fyi. maybe just non-combat ones though.)
@@ -328,8 +328,12 @@ namespace ER_Buddy_Randomizer
                         }
                         else if (i == 0)
                         {
+                            break;
+
                             //throw new InvalidOperationException("Couldn't find an NpcThinkParam entry! Weird, right?");
-                            MessageBox.Show("Couldn't find a good NpcThinkParam entry!\nOffending NpcParam ID: " + npcID + "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "Error", MessageBoxButtons.OK);
+                            var result = MessageBox.Show("Couldn't find a good NpcThinkParam entry!\nOffending NpcParam ID: " + npcID + "\n\nPlease send me a message (@king_bore_haha) with this error message and ID!", "Error", MessageBoxButtons.OKCancel);
+                            if (result == DialogResult.Cancel)
+                                return false;
                         }
                     }
                 }
@@ -351,12 +355,11 @@ namespace ER_Buddy_Randomizer
                 {
                     //error: good NPC IDs has ran out, but the program wants to still run
                     MessageBox.Show("Ran out of NPC IDs to use! This is probably because you are requesting too many unique multi-buddies. Try enabling buddy reuse, or reducing multi-buddy chances.\n\nIf this happens with reasonable settings, please send me a message (@king_bore_haha) with this error message and let me know if your game was already modded!", "Error", MessageBoxButtons.OK);
-                    ActiveForm.Close(); //close the program
+                    return false;
                 }
 
                 //decide which NpcParam entries to use
                 int rng_index = rng.Next(0, goodNpcIDs.Count); //pick next random entry
-
 
                 //check if chosen NPC is acceptable
                 int timeout = 0;
@@ -422,16 +425,16 @@ namespace ER_Buddy_Randomizer
                     if (timeout >= 3000000 + goodNpcIDs.Count)
                     {
                         MessageBox.Show("Got stuck in NPC choice logic! This is probably because you are requesting too many unique multi-buddies. Try reducing multi-buddy chances, or enabling buddy reuse.\n\nIf this happens with a default preset (or very easily), please send me a message with this error message and let me know if your game was already modded!", "Error", MessageBoxButtons.OK);
-                        ActiveForm.Close(); //close the program
+                        return false;
                     }
                 }
 
+                int buddyBaseID = buddyParamRow.ID - buddyParamRow.ID % 100;
                 bool isMultiSummon = buddyParamRow.ID - buddyParam.Rows[i - 1].ID == 1;
                 if (isMultiSummon
                 && rng.Next(1, 100) <= n_multipleDupeChance.Value) //should this be a dupe summon
                 {
                     //this is multi-summon, and will be a dupe of the first entry
-                    int buddyBaseID = buddyParamRow.ID - buddyParamRow.ID % 100;
                     npcID = (Int32)buddyParam[buddyBaseID]["npcParamId"].Value;
                     npcThinkID = (Int32)buddyParam[buddyBaseID]["npcThinkParamId"].Value;
                 }
@@ -520,60 +523,78 @@ namespace ER_Buddy_Randomizer
                 #endregion
 
                 #region BuddyParam
-                buddyParamRow["npcParamId"].Value = newNpcID;
-
-                buddyParamRow["npcThinkParamId"].Value = newNpcThinkID;
-                buddyParamRow["npcPlayerInitParamId"].Value = -1; //some c0000 thing i think
-
-                buddyParamRow["npcParamId_ridden"].Value = -1;
-                buddyParamRow["npcThinkParamId_ridden"].Value = -1;
-                buddyParamRow["generateAnimId"].Value = -1;
-                buddyParamRow["appearOnAroundSekihi"].Value = (byte)0; //always summon around player
-                buddyParamRow["pcFollowType"].Value = (byte)0; //0 = follow player around, 1 = don't?, 2 = ?
-
-
-
-                //spawn offsets
-                //this is all pretty dumb and I hate it
-                /* //Horizontal offset 2 (I was right about being wrong. There isn't a height offset)
-                float buddyHeight = (float)newNpcRow["hitHeight"].Value;
-                buddyParamRow["z_offset"].Value = buddyHeight * buddyHeightMult * -1; //horizontal offset 2
-                */
-                float xOffset = 0;
-                float buddyWidth = (float)newNpcRow["chrHitRadius"].Value;// * (float).75;
-                if (isMultiSummon)
+                if (buddyBaseID == 20700000)
                 {
-                    float xOffsetIncrement = buddyWidth;
-
-                    //this part doesn't actually make sense, but whatever.
-                    xOffset = (float)buddyParam.Rows[i - 1]["x_offset"].Value;
-                    if (xOffset >= 0)
-                        xOffset += xOffsetIncrement; //increment
+                    // Do not modify buddyParam fields for mimic tear, else the game will crash and otherwise cause issues.
+                    if (buddyParamRow.ID == 20700000)
+                    {
+                        // Initial blob (this isn't strictly necessary, but the first buddy for mimic tear doesn't really work so why not)
+                        buddyParamRow["npcParamId"].Value = 133201000;
+                        buddyParamRow["npcThinkParamId"].Value = 133200000;
+                    }
                     else
-                        xOffset -= xOffsetIncrement; //decrement
-                    xOffset *= -1; //invert
-
+                    {
+                        // c0000's
+                        buddyParamRow["npcParamId"].Value = 100000010;
+                        buddyParamRow["npcThinkParamId"].Value = 100000010;
+                        buddyParamRow["npcPlayerInitParamId"].Value = 26050;
+                        buddyParamRow["generateAnimId"].Value = 60500;
+                        buddyParamRow["pcFollowType"].Value = 0;
+                    }
                 }
-                buddyParamRow["x_offset"].Value = xOffset; //horizontal offset 1
-                buddyParamRow["z_offset"].Value = buddyWidth * -1; //horizontal offset 2
-
-
-                //special effect scalers
-                for (var iLv = 0; iLv <= 10; iLv++)
+                else
                 {
-                    buddyParamRow["dopingSpEffect_lv" + iLv].Value = 290000 + iLv; //buddy reinforcement spEfects
-                }
-                #endregion
+                    buddyParamRow["npcParamId"].Value = newNpcID;
 
-                #region npcThinkParam
-                newNpcThinkRow["isBuddyAI"].Value = true;
-                //newNpcThinkRow["TeamAttackEffectivity"].Value = (byte)0;
+                    buddyParamRow["npcThinkParamId"].Value = newNpcThinkID;
+                    buddyParamRow["npcPlayerInitParamId"].Value = -1; //some c0000 thing i think
+
+                    buddyParamRow["npcParamId_ridden"].Value = -1;
+                    buddyParamRow["npcThinkParamId_ridden"].Value = -1;
+                    buddyParamRow["generateAnimId"].Value = -1;
+                    buddyParamRow["appearOnAroundSekihi"].Value = (byte)0; //always summon around player
+                    buddyParamRow["pcFollowType"].Value = (byte)0; //0 = follow player around, 1 = don't?, 2 = ?
+
+
+                    //spawn offsets
+                    //this is all pretty dumb and I hate it
+                    /* //Horizontal offset 2 (I was right about being wrong. There isn't a height offset)
+                    float buddyHeight = (float)newNpcRow["hitHeight"].Value;
+                    buddyParamRow["z_offset"].Value = buddyHeight * buddyHeightMult * -1; //horizontal offset 2
+                    */
+                    float xOffset = 0;
+                    float buddyWidth = (float)newNpcRow["chrHitRadius"].Value;// * (float).75;
+                    if (isMultiSummon)
+                    {
+                        float xOffsetIncrement = buddyWidth;
+
+                        //this part doesn't actually make sense, but whatever.
+                        xOffset = (float)buddyParam.Rows[i - 1]["x_offset"].Value;
+                        if (xOffset >= 0)
+                            xOffset += xOffsetIncrement; //increment
+                        else
+                            xOffset -= xOffsetIncrement; //decrement
+                        xOffset *= -1; //invert
+
+                    }
+                    buddyParamRow["x_offset"].Value = xOffset; //horizontal offset 1
+                    buddyParamRow["z_offset"].Value = buddyWidth * -1; //horizontal offset 2
+
+                    //special effect scalers
+                    for (var iLv = 0; iLv <= 10; iLv++)
+                    {
+                        buddyParamRow["dopingSpEffect_lv" + iLv].Value = 290000 + iLv; //buddy reinforcement spEfects
+                    }
+                    #endregion
+
+                    #region npcThinkParam
+                    newNpcThinkRow["isBuddyAI"].Value = true;
+                    //newNpcThinkRow["TeamAttackEffectivity"].Value = (byte)0;
                     //Summon AI now always behaves at 100 % aggressiveness when they are not the primary attacker (in situations where multiple allies are attacking the same enemy).
-                #endregion
+                    #endregion
+                }
 
-                string logSpacer = " [] ";
                 outputLog.Add("Buddy " + buddyParamRow.ID + logSpacer + "NPC " + npcID + logSpacer + "THINK " + npcThinkID);
-
             }
 
             #region SpEffectParam
@@ -644,6 +665,7 @@ namespace ER_Buddy_Randomizer
 
             File.WriteAllLines($@"{Directory.GetCurrentDirectory()}\Randomizer Logs\Output{GetVersion()} {time}.txt", outputLog);
 
+            return true;
         }
 
         private void b_browse_Click(object sender, EventArgs e)
@@ -688,26 +710,26 @@ namespace ER_Buddy_Randomizer
         {
             //start randomizer
 
-             if (File.Exists(backupFile))
-                {
-                    //User wants to randomize a regulation that has a backup file next to it
+            if (File.Exists(backupFile))
+            {
+                //User wants to randomize a regulation that has a backup file next to it
 
-                    DialogResult result = MessageBox.Show("Warning: Backup Regulation.bin already exists."
-                        + " \nYou may be trying to randomize an already randomized Regulation.bin, which will cause issues. It's recommended you restore the backup first."
-                        + " \n\nDelete Regulation.bin and restore backup before proceeding?"
-                        , "Confirm Randomization", MessageBoxButtons.YesNoCancel);
-                    if (result == DialogResult.Yes)
-                    {
-                        Restore_Regulation();
-                    }
-                    else if (result == DialogResult.Cancel)
-                    {
-                        return;
-                    }
-                    else if (result == DialogResult.No)
-                    {
-                        // No action.
-                    }
+                DialogResult result = MessageBox.Show("Warning: Backup Regulation.bin already exists."
+                    + " \nYou may be trying to randomize an already randomized Regulation.bin, which will cause issues. It's recommended you restore the backup first."
+                    + " \n\nDelete Regulation.bin and restore backup before proceeding?"
+                    , "Confirm Randomization", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    Restore_Regulation();
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+                else if (result == DialogResult.No)
+                {
+                    // No action.
+                }
             }
 
             CreateBuddy(); //Do everything
@@ -716,7 +738,7 @@ namespace ER_Buddy_Randomizer
 
             UpdateConsole("Finished!");
             System.Media.SystemSounds.Exclamation.Play(); //make noise
-            MessageBox.Show("All done!","Randomization Finished",MessageBoxButtons.OK);
+            MessageBox.Show("All done!", "Randomization Finished", MessageBoxButtons.OK);
 
         }
 
@@ -740,7 +762,7 @@ namespace ER_Buddy_Randomizer
         private void cb_buddyReuse_CheckedChanged(object sender, EventArgs e)
         {
             if (cb_buddyReuse.Checked)
-                n_variantReuseChance.Enabled = false;  
+                n_variantReuseChance.Enabled = false;
             else
                 n_variantReuseChance.Enabled = true;
         }
@@ -787,12 +809,12 @@ namespace ER_Buddy_Randomizer
         private void Restore_Regulation()
         {
             string regulationPath = openFileDialog1.FileName;
-            
+
             FileSystem.DeleteFile(regulationPath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
             File.Move(backupFile, regulationPath, true);
             UpdateConsole("Backup Restored");
             b_restoreRegulation.Enabled = false;
-            
+
         }
 
         private void b_restoreRegulation_Click(object sender, EventArgs e)
