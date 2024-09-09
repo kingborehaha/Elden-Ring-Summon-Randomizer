@@ -615,12 +615,12 @@ namespace ER_Buddy_Randomizer
             #endregion
 
             #region GoodsParam
-            //randomize FP/HP cost
+            // Randomize FP/HP cost
             foreach (PARAM.Row row in goodsParam.Rows)
             {
-                if (row.ID >= 200000 && row.ID <= 270000) //can probably replace this with good type check, or a sort ID check or something. ashes are distinguished in the UI somehow, after all.
+                if ((byte)row["goodsUseAnim"].Value == (byte)34)
                 {
-                    //this is a spirit ash good
+                    // This is a spirit ash good
                     row["consumeHP"].Value = (Int16)0;
                     row["consumeMP"].Value = (Int16)0;
 
