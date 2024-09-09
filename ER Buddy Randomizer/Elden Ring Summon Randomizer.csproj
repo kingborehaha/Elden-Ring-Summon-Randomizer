@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>ER_Buddy_Randomizer</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>spiritbell.ico</ApplicationIcon>
     <PackageIcon></PackageIcon>
-    <FileVersion>1.0.5</FileVersion>
-    <AssemblyVersion>1.0.5</AssemblyVersion>
-    <Version>1.0.5</Version>
+    <FileVersion>1.0.7</FileVersion>
+    <AssemblyVersion>1.0.7</AssemblyVersion>
+    <Version>1.0.7</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SoulsFormats\SoulsFormats\SoulsFormats.csproj" />
+    <ProjectReference Include="..\SoulsFormats\SoulsFormats.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,6 +52,9 @@
     </None>
     <None Update="Paramdex\NpcThinkParam.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Paramdex\SpEffect.1.12.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Paramdex\SpEffect.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
