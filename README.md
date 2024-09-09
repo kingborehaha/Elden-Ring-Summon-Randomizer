@@ -55,4 +55,4 @@ Initial beta release
 
 ## Info
 - Built using https://github.com/JKAnderson/SoulsFormats
-- Contains Param Definitions from https://github.com/soulsmods/Paramdex
+- Contains Param Definitions from https://github.com/soulsmods/Paramdex and https://github.com/vawser/Smithbox.
