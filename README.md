@@ -7,6 +7,7 @@
 - Do not run this tool on Regulation.bin in Elden Ring's "Game" folder. If you do and play online, you could potentially be banned.
 
 ## How to Use
+- Install [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.7-windows-x64-installer)
 - Download Mod Engine 2 https://github.com/soulsmods/ModEngine2/releases
 - Copy "regulation.bin" from Elden Ring's "Game" folder to Mod Engine 2's "Mod" folder.
 - Run Summon Randomizer. If the program doesn't run, you may need to install .NET 6.0 first.
@@ -15,6 +16,9 @@
 - Run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
+### v1.0.7
+- ER DLC support. Updated systems were taken from Smithbox (thanks to everybody involved!).
+
 ### v1.0.5
 - Fixed regulation.bin backup not being restored when clicking the randomize button and being prompted to restore backups.
 - Fixed empty SpEffect ID logic. This issue rarely triggered a "Couldn't find enough empty effect slots" error when it didn't need to.
