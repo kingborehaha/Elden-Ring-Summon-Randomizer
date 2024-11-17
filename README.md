@@ -16,6 +16,9 @@
 - Run Mod Engine 2's "launchmod_eldenring.bat" to play with mods.
 
 ## Updates
+### v1.0.8
+- Updated to work with Elden Ring v1.16
+
 ### v1.0.7
 - ER DLC support. Updated systems were taken from Smithbox (thanks to everybody involved!).
 
@@ -54,5 +57,5 @@ Public Release
 Initial beta release
 
 ## Info
-- Built using https://github.com/JKAnderson/SoulsFormats
-- Contains Param Definitions from https://github.com/soulsmods/Paramdex and https://github.com/vawser/Smithbox.
+- Built using https://github.com/JKAnderson/SoulsFormats and https://github.com/soulsmods/SoulsFormatsNEXT
+- Contains Param Definitions from https://github.com/soulsmods/Paramdex and https://github.com/vawser/Smithbox
